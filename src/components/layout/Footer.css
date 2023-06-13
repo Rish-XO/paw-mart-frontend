@@ -8,8 +8,10 @@
     text-align: center;
     padding-top: 1rem; 
     padding-bottom: 2rem;
+    margin-top: auto;
 }
 
 .footer p {
     margin-bottom: 0; /* Remove the bottom margin on the paragraph */
   }
+
