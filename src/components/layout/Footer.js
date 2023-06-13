@@ -5,7 +5,9 @@ function Footer() {
   return (
     <Fragment>
          <footer className="footer has-background-black">
-        <p>&copy; 2023 Paw Mart</p>
+         <div className="content has-text-centered">
+          <p>&copy; 2023 Paw Mart</p>
+        </div>
       </footer>
     </Fragment>
   )
