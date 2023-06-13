@@ -3,6 +3,7 @@ import "./App.css";
 // import Button from "@mui/material/Button";
 import Home from "./pages/Home";
 import Root from "./pages/Root";
+import PostsPage from "./pages/Posts";
 
 const router = createBrowserRouter([
   {
@@ -12,10 +13,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: 'posts',
-      element: 
-    }
-  ],
+        path: "posts",
+        element: <PostsPage />,
+      },
+    ],
   },
 ]);
 
