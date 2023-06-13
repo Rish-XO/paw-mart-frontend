@@ -1,13 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import classes from './HomePage.module.css'
 
 function HomePage() {
   return (
-    <div className={classes.maindiv}>
-      <footer>
+    <Fragment>
+<div className={classes.maindiv}>
+     
+     
+    </div>
+         <footer>
         <p>&copy; 2023 Paw Mart</p>
       </footer>
-    </div>
+    </Fragment>
+    
+   
   );
 }
 
