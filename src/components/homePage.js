@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import classes from './homePage.module.css'
 
-function homePage() {
+function HomePage() {
   return (
-    <div>
-      
+    <div className={classes.maindiv}>
+      <footer>
+        <p>&copy; 2023 Paw Mart</p>
+      </footer>
     </div>
-  )
+  );
 }
 
-export default homePage
+export default HomePage;
