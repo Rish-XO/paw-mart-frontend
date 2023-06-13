@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import classes from "./HomePage.module.css";
-import Footer from "./layout/Footer";
-import { Link } from "@mui/material";
+// import Footer from "./layout/Footer";
+import { Link } from "react-router-dom";
 
 
 function HomePage() {
@@ -32,7 +32,7 @@ function HomePage() {
             Shop. We offer a wide range of lovable pets. Find your perfect furry
             companion and provide them with the love and care they deserve.
           </p>
-          <Link className="button mt-5 is-size-4">View Pets</Link>
+          <Link to="posts" className="button mt-5 is-size-4">View Pets</Link>
         </div>
       </div>
 
