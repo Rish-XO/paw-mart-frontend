@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './homePage.module.css'
+import classes from './HomePage.module.css'
 
 function HomePage() {
   return (
