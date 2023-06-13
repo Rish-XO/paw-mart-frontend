@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import classes from "./HomePage.module.css";
-import Footer from "./Footer";
+import Footer from "./layout/Footer";
 import { Link } from "@mui/material";
 
 
@@ -36,7 +36,6 @@ function HomePage() {
         </div>
       </div>
 
-      <Footer />
     </Fragment>
   );
 }
