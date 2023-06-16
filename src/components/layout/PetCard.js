@@ -86,13 +86,17 @@ function PetCard() {
               <Typography gutterBottom variant="h5" component="div">
                 {pet.category}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
+              <Typography gutterBottom variant="h6" component="div">
+                Breed: {pet.breed}
               </Typography>
+              <Typography gutterBottom variant="subtitle2" component="div">
+                Price : {pet.price}
+              </Typography>
+              {/* <Typography variant="body2" color="text.secondary">
+                {pet.description}
+              </Typography> */}
             </CardContent>
             <CardActions>
-              <Button size="small">Share</Button>
               <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
