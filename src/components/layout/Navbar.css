@@ -1,0 +1,15 @@
+.navbar-logo {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color:  black;
+  letter-spacing: 2px;
+}
+
+.navbar-item:hover .navbar-logo,
+.navbar-item:focus .navbar-logo,
+.navbar-item:active .navbar-logo {
+  text-decoration: none;
+  background-color: transparent;
+}

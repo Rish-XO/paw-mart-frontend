@@ -1,70 +1,82 @@
-import React, { Fragment } from 'react'
+
+import React, { Fragment } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import './Navbar.css'
 
 function Navbar() {
   return (
     <Fragment>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-    </a>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <NavLink className="navbar-item" to="/">
+            {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="PawMart" /> */}
+            <span className="navbar-logo">Paw Mart</span>
+            
+          </NavLink>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider" />
-          <a class="navbar-item">
-            Report an issue
-          </a>
+          <Link
+            role="button"
+            className="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </Link>
         </div>
-      </div>
-    </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <NavLink className="navbar-item" to="/">
+              Home
+            </NavLink>
+
+            <NavLink className="navbar-item" to="/documentation">
+              Documentation
+            </NavLink>
+
+            <div className="navbar-item has-dropdown is-hoverable">
+              <NavLink className="navbar-link" to="/more">
+                More
+              </NavLink>
+
+              <div className="navbar-dropdown">
+                <NavLink className="navbar-item" to="/more/about">
+                  About
+                </NavLink>
+                <NavLink className="navbar-item" to="/more/jobs">
+                  Jobs
+                </NavLink>
+                <NavLink className="navbar-item" to="/more/contact">
+                  Contact
+                </NavLink>
+                <hr className="navbar-divider" />
+                <NavLink className="navbar-item" to="/more/report">
+                  Report an issue
+                </NavLink>
+              </div>
+            </div>
+          </div>
+
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <NavLink className="button is-primary" to="/signup">
+                  <strong>Sign up</strong>
+                </NavLink>
+                <NavLink className="button is-light" to="/login">
+                  Log in
+                </NavLink>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</nav>
+      </nav>
     </Fragment>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
+

@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Root from "./pages/Root";
 import PostsPage from "./pages/Posts";
+import PostsRootLayout from "./pages/PostsRootLayout";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,13 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: "posts",
-        element: <PostsPage />,
+        element: <PostsRootLayout />,
+        children : [
+          {
+            index : true,
+            element : <PostsPage />
+          }
+        ]
       },
     ],
   },

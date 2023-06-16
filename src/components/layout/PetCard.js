@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import { Typography, Grid } from "@mui/material";
-import './PetCard.css'
+import "./PetCard.css";
 
 const pets = [
   {
@@ -71,10 +71,10 @@ function PetCard() {
     <Grid container spacing={2} justifyContent="center">
       {pets.map((pet) => (
         <Grid item xs={12} sm={6} md={4} key={pet.id}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card className="card-item" sx={{ maxWidth: 345 }}>
             <CardMedia
               sx={{
-                height: 140,
+                height: 200,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -82,22 +82,24 @@ function PetCard() {
               image="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"
               title="green iguana"
             />
-            <CardContent>
+            <CardContent sx={{ paddingTop: "8px", paddingBottom: "8px" }}>
               <Typography gutterBottom variant="h5" component="div">
-                {pet.category}
+                ₹ {pet.price}
               </Typography>
               <Typography gutterBottom variant="h6" component="div">
                 Breed: {pet.breed}
               </Typography>
               <Typography gutterBottom variant="subtitle2" component="div">
-                Price : {pet.price}
+                {pet.category}
               </Typography>
               {/* <Typography variant="body2" color="text.secondary">
                 {pet.description}
               </Typography> */}
             </CardContent>
             <CardActions>
-              <Button size="small">Learn More</Button>
+            <div className="card-button">
+              <Button variant="contained" size="small">View</Button>
+            </div>
             </CardActions>
           </Card>
         </Grid>
