@@ -4,7 +4,7 @@ import PetCard from "./layout/PetCard";
 
 function Posts() {
   return (
-    <Container sx={{
+    <Container maxWidth="md" sx={{
      height: "100vh",
      display: "flex",
      flexDirection: "column",
