@@ -29,15 +29,15 @@ function Navbar() {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <NavLink className="navbar-item" to="/">
+            <NavLink className="navbar-item" to="/posts">
               Home
             </NavLink>
 
-            <NavLink className="navbar-item" to="/documentation">
-              Documentation
+            <NavLink className="navbar-item" to="/posts/new">
+             Sell
             </NavLink>
 
-            <div className="navbar-item has-dropdown is-hoverable">
+            {/* <div className="navbar-item has-dropdown is-hoverable">
               <NavLink className="navbar-link" to="/more">
                 More
               </NavLink>
@@ -57,7 +57,8 @@ function Navbar() {
                   Report an issue
                 </NavLink>
               </div>
-            </div>
+            </div> */}
+
           </div>
 
           <div className="navbar-end">

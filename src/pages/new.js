@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import NewForm from '../components/NewForm'
 
 function New() {
   return (
-    <div>
-      
-    </div>
+    <Fragment>
+    <NewForm />
+    </Fragment>
   )
 }
 

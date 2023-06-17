@@ -18,7 +18,7 @@ function HomePage() {
             className={`column ${classes.btn} mt-5 is-flex is-justify-content-flex-end is-align-items-flex-start mr-6`}
           >
             <div className="buttons">
-              <Link className="button is-primary mr-5">
+              <Link className="button is-primary mr-5" to="signup">
                 <strong>Sign up</strong>
               </Link>
               <Link className="button is-light mr-5">Log in</Link>
