@@ -7,6 +7,7 @@ import PostsPage from "./pages/Posts";
 import PostsRootLayout from "./pages/PostsRootLayout";
 import New from "./pages/New";
 import SignUp from "./pages/SignUp";
+import LoginPage from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
           {
             path: "new",
             id: "new",
-            element: <New />,
+            element: <New />
           },
         ],
       },
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "signup",
         element: <SignUp />,
       },
+      {
+        path: "login",
+        element: <LoginPage />
+      }
     ],
   },
 ]);
