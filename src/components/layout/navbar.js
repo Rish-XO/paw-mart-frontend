@@ -6,7 +6,7 @@ import './Navbar.css'
 function Navbar() {
   return (
     <Fragment>
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to="/">
             {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="PawMart" /> */}

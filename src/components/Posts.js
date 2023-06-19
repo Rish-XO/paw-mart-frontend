@@ -14,7 +14,7 @@ function Posts() {
      alignItems: "center"
       
     }}>
-      <Typography variant="h1" sx={{ marginBottom : '30px'}}>Browse your Pets</Typography>
+      <Typography variant="h1" sx={{ marginBottom : '40px' , marginTop : '60px'}}>Browse your Pets</Typography>
      
       <PetCard />
     </Container>
