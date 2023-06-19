@@ -1,4 +1,4 @@
-.footer {
+ /* .footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -12,6 +12,17 @@
 }
 
 .footer p {
-    margin-bottom: 0; /* Remove the bottom margin on the paragraph */
-  }
+    margin-bottom: 0;  } */
+   
 
+    .footer {
+        /* position: fixed;
+        left: 0;
+        bottom: 0; */
+        width: 100%;
+        background-color: black; /* Replace with your desired background color */
+        color: white; /* Replace with your desired text color */
+        text-align: center;
+        padding: 1rem 0;
+      }
+      

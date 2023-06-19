@@ -4,8 +4,8 @@ import './Footer.css'
 function Footer() {
   return (
     <Fragment>
-         <footer className="footer is-fixed has-background-black">
-         <div className="content has-text-centered">
+         <footer className="footer is-fixed-bottom has-background-black">
+         <div className="content has-text-centered has-text-white">
           <p>&copy; 2023 Paw Mart</p>
         </div>
       </footer>

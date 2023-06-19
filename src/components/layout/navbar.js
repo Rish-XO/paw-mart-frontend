@@ -1,25 +1,33 @@
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './Navbar.css'
+import './Navbar.css';
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <Fragment>
       <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavLink className="navbar-item" to="/">
-            {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="PawMart" /> */}
             <span className="navbar-logo">Paw Mart</span>
-            
           </NavLink>
 
           <Link
             role="button"
-            className="navbar-burger"
+            className={`navbar-burger ${isMenuOpen ? 'is-active' : ''}`}
             aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
+            aria-expanded={isMenuOpen}
+            onClick={toggleMenu}
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -27,47 +35,24 @@ function Navbar() {
           </Link>
         </div>
 
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            <NavLink className="navbar-item" to="/posts">
+            <NavLink className="navbar-item" to="/posts" onClick={closeMenu}>
               Home
             </NavLink>
 
-            <NavLink className="navbar-item" to="/posts/new">
-             Sell
+            <NavLink className="navbar-item" to="/posts/new" onClick={closeMenu}>
+              Sell
             </NavLink>
-
-            {/* <div className="navbar-item has-dropdown is-hoverable">
-              <NavLink className="navbar-link" to="/more">
-                More
-              </NavLink>
-
-              <div className="navbar-dropdown">
-                <NavLink className="navbar-item" to="/more/about">
-                  About
-                </NavLink>
-                <NavLink className="navbar-item" to="/more/jobs">
-                  Jobs
-                </NavLink>
-                <NavLink className="navbar-item" to="/more/contact">
-                  Contact
-                </NavLink>
-                <hr className="navbar-divider" />
-                <NavLink className="navbar-item" to="/more/report">
-                  Report an issue
-                </NavLink>
-              </div>
-            </div> */}
-
           </div>
 
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <NavLink className="button is-primary" to="/signup">
+                <NavLink className="button is-primary" to="/signup" onClick={closeMenu}>
                   <strong>Sign up</strong>
                 </NavLink>
-                <NavLink className="button is-light" to="/login">
+                <NavLink className="button is-light" to="/login" onClick={closeMenu}>
                   Log in
                 </NavLink>
               </div>
@@ -80,4 +65,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
