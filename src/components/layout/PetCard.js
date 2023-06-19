@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import { Typography, Grid } from "@mui/material";
 import "./PetCard.css";
+import { Link } from "react-router-dom";
 
 const pets = [
   {
@@ -71,6 +72,7 @@ function PetCard() {
     <Grid container spacing={2} justifyContent="center">
       {pets.map((pet) => (
         <Grid item xs={12} sm={6} md={4} key={pet.id}>
+           <Link to={`show/${pet.id}`}>
           <Card className="card-item" sx={{ maxWidth: 345 }}>
             <CardMedia
               sx={{
@@ -97,11 +99,15 @@ function PetCard() {
               </Typography> */}
             </CardContent>
             <CardActions>
-            <div className="card-button">
+              <Link to={`show/${pet.id}`}>
+              <div className="card-button">
               <Button variant="contained" size="small">View</Button>
             </div>
+              </Link>
+           
             </CardActions>
           </Card>
+          </Link>
         </Grid>
       ))}
     </Grid>
