@@ -8,6 +8,7 @@ import PostsRootLayout from "./pages/PostsRootLayout";
 import New from "./pages/New";
 import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
+import Show from "./pages/Show";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: "posts",
-        element: <PostsRootLayout />,
+        element: <PostsRootLayout />,   //included the navbar for every page under posts
         children: [
           {
             index: true,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             id: "new",
             element: <New />
           },
+          {
+            path: ":id",
+            element: <Show />
+          }
         ],
       },
       {
