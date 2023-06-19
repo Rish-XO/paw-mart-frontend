@@ -81,7 +81,7 @@ const CreatePostForm = () => {
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <InputLabel>Category</InputLabel>
+              <InputLabel variant="outlined">Category</InputLabel>
               <Select
                 value={category}
                 onChange={handleCategoryChange}
