@@ -1,6 +1,6 @@
 
 import React, { Fragment, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
@@ -22,7 +22,7 @@ function Navbar() {
             <span className="navbar-logo">Paw Mart</span>
           </NavLink>
 
-          <Link
+          <button
             role="button"
             className={`navbar-burger ${isMenuOpen ? 'is-active' : ''}`}
             aria-label="menu"
@@ -32,7 +32,7 @@ function Navbar() {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </Link>
+          </button>
         </div>
 
         <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
