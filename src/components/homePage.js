@@ -21,7 +21,7 @@ function HomePage() {
               <Link className="button is-primary mr-5" to="signup">
                 <strong>Sign up</strong>
               </Link>
-              <Link className="button is-light mr-5">Log in</Link>
+              <Link className="button is-light mr-5" to="login">Log in</Link>
             </div>
           </div>
         </div>

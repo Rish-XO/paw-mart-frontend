@@ -23,7 +23,6 @@ function Navbar() {
           </NavLink>
 
           <button
-            role="button"
             className={`navbar-burger ${isMenuOpen ? 'is-active' : ''}`}
             aria-label="menu"
             aria-expanded={isMenuOpen}
