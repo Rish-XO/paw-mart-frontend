@@ -78,7 +78,7 @@ function PetCard() {
         const response = await axios.get("http://localhost:5000/posts");
         const data = response.data;
         console.log(data);
-        setPets(data)
+        setPets(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -89,9 +89,13 @@ function PetCard() {
   return (
     <Grid container spacing={2} justifyContent="center">
       {pets.map((pet) => (
-        <Grid item xs={12} sm={6} md={4} key={pet.id}>
-          <Link to={`${pet.id}`}>
-            <Card className="card-item" sx={{ maxWidth: 345 }} key={pet.id}>
+        <Grid item xs={12} sm={6} md={4} key={pet.post_id}>
+          <Link to={`${pet.post_id}`}>
+            <Card
+              className="card-item"
+              sx={{ maxWidth: 345 }}
+              key={pet.post_id}
+            >
               <CardMedia
                 sx={{
                   height: 200,
@@ -117,7 +121,7 @@ function PetCard() {
               </Typography> */}
               </CardContent>
               <CardActions>
-                <Link to={`${pet.id}`}>
+                <Link to={`${pet.post_id}`}>
                   <div className="card-button">
                     <Button variant="contained" size="small">
                       View
