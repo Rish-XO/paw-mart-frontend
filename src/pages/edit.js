@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
@@ -24,6 +24,8 @@ const EditForm = () => {
   const [errors, setErrors] = useState({});
 
   const {id} = useParams()
+
+  const navigate = useNavigate()
 
   // fetching the corresponding post data
   useEffect(() => {
@@ -43,7 +45,7 @@ const EditForm = () => {
     getPost();
   }, [id]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Basic error checking
@@ -68,7 +70,16 @@ const EditForm = () => {
     }
 
     // Submit the form
-    // ...
+    try {
+      const body = { category, breed, price, description };
+      const response = await axios.put(
+        `http://localhost:5000/posts/${id}/edit`,
+        body
+      );
+      navigate(`posts/${id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleCategoryChange = (event) => {
