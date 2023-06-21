@@ -6,32 +6,32 @@ import {
   Typography,
   Container,
   Box,
+  Button,
 } from "@mui/material";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [postData, setPostData] = useState({})
-  const { id } = useParams()
+  const [postData, setPostData] = useState({});
+  const { id } = useParams();
 
-  useEffect(() =>{
+  useEffect(() => {
     const getPost = async () => {
-        try {
-          const response = await axios.get(`http://localhost:5000/posts/${id}`)
-          const data = response.data
-          setPostData(data)
-          console.log(data);
-        } catch (error) {
-          console.log(error.message);
-        }
-    }
-    getPost()
-  },[id])
-
- 
+      try {
+        const response = await axios.get(`http://localhost:5000/posts/${id}`);
+        const data = response.data;
+        setPostData(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getPost();
+  }, [id]);
 
   // const handlePrevious = () => {
   //   setCurrentSlide((prevSlide) => prevSlide - 1);
@@ -45,9 +45,9 @@ const FlexibleComponent = () => {
     <Container sx={{ marginTop: "100px" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
-          <Card>
+        <Card sx={{ position: "relative" }}>
+
             {/* Main Card */}
-            <CardContent>
               <Carousel
                 selectedItem={currentSlide}
                 showThumbs={false}
@@ -67,7 +67,11 @@ const FlexibleComponent = () => {
                   <img
                     src="https://images.unsplash.com/photo-1592754862816-1a21a4ea2281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"
                     alt="pet 1"
-                   style={{ maxWidth: "100%", maxHeight: "100%" , objectFit: "contain" }}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
                   />
                 </Box>
                 <Box
@@ -81,7 +85,11 @@ const FlexibleComponent = () => {
                   <img
                     src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2576&q=80"
                     alt="pet 2"
-                   style={{ maxWidth: "100%", maxHeight: "100%" , objectFit: "contain" }}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
                   />
                 </Box>
                 <Box
@@ -95,20 +103,31 @@ const FlexibleComponent = () => {
                   <img
                     src="https://images.unsplash.com/photo-1601758177266-bc599de87707?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                     alt="pet 3"
-                    style={{ maxWidth: "100%", maxHeight: "100%" , objectFit: "contain" }}
-    
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
                   />
                 </Box>
                 {/* Add more images as needed */}
               </Carousel>
+              <Container>
+
               <Typography variant="h6" gutterBottom>
-                {`price : ${postData.price} ` }
+                {`price : ${postData.price} `}
               </Typography>
-              <Typography variant="h5">
-                Description
-              </Typography>
-              <Typography variant="body2">{postData.description}</Typography>
-            </CardContent>
+              <Typography variant="h5">Description</Typography>
+              <Typography variant="body2" sx={{marginBottom: "30px"}}>{postData.description}</Typography>
+              <Link to="edit">
+              <Button
+                sx={{ position: "absolute", bottom: "8px", right: "8px" }} 
+                variant="contained"
+                >
+                Edit
+              </Button>
+                  </Link>
+                </Container>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>

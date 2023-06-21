@@ -9,6 +9,7 @@ import New from "./pages/New";
 import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
+import Edit from "./pages/Edit";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,17 @@ const router = createBrowserRouter([
           },
           {
             path: ":id",
-            element: <Show />
+            children:[
+              {
+                index:true,
+                element: <Show />
+              },
+              {
+                path: "edit",
+                id: "edit",
+                element: <Edit />
+              }
+            ]
           }
         ],
       },
