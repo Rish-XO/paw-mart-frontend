@@ -76,7 +76,7 @@ const EditForm = () => {
         `http://localhost:5000/posts/${id}/edit`,
         body
       );
-      navigate("/posts");
+      navigate(-1);
     } catch (error) {
       console.log(error.message);
     }
