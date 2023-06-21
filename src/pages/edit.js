@@ -23,9 +23,13 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const {id} = useParams()
+  const { id } = useParams();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   // fetching the corresponding post data
   useEffect(() => {
@@ -33,10 +37,10 @@ const EditForm = () => {
       try {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
-       setCategory(data.category)
-       setBreed(data.breed)
-       setPrice(data.price)
-       setDescription(data.description)
+        setCategory(data.category);
+        setBreed(data.breed);
+        setPrice(data.price);
+        setDescription(data.description);
         console.log(data);
       } catch (error) {
         console.log(error.message);
@@ -103,7 +107,7 @@ const EditForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{marginTop: 10}}>
+    <Container maxWidth="sm" sx={{ marginTop: 10 }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -167,8 +171,16 @@ const EditForm = () => {
             <input type="file" accept="image/*" onChange={handleImageUpload} />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary" onClick={goBack}>
               Edit
+            </Button>
+            <Button
+              sx={{ marginLeft: "50px" }}
+              variant="contained"
+              color="secondary"
+              onClick={goBack}
+            >
+              Back
             </Button>
           </Grid>
         </Grid>
