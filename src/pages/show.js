@@ -14,7 +14,7 @@ import axios from "axios";
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [postData, setPostData] = useState([])
+  const [postData, setPostData] = useState({})
   const { id } = useParams()
 
   useEffect(() =>{
@@ -22,6 +22,7 @@ const FlexibleComponent = () => {
         try {
           const response = await axios.get(`http://localhost:5000/posts/${id}`)
           const data = response.data
+          setPostData(data)
           console.log(data);
         } catch (error) {
           console.log(error.message);
@@ -101,9 +102,12 @@ const FlexibleComponent = () => {
                 {/* Add more images as needed */}
               </Carousel>
               <Typography variant="h6" gutterBottom>
-                Main Card Title
+                {`price : ${postData.price} ` }
               </Typography>
-              <Typography variant="body2">Main Card Content</Typography>
+              <Typography variant="h5">
+                Description
+              </Typography>
+              <Typography variant="body2">{postData.description}</Typography>
             </CardContent>
           </Card>
         </Grid>
