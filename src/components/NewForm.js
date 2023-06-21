@@ -10,6 +10,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
 
@@ -21,7 +23,9 @@ const CreatePostForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Basic error checking
@@ -46,7 +50,16 @@ const CreatePostForm = () => {
     }
 
     // Submit the form
-    // ...
+    try {
+      const body = { category, breed, price, description };
+      const response = await axios.post(
+        "http://localhost:5000/posts/new",
+        body
+      );
+      navigate("/posts");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleCategoryChange = (event) => {
@@ -71,7 +84,7 @@ const CreatePostForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{marginTop: 10}}>
+    <Container maxWidth="sm" sx={{ marginTop: 10 }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>

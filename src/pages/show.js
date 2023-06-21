@@ -25,7 +25,6 @@ const FlexibleComponent = () => {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
         setPostData(data);
-        console.log(data);
       } catch (error) {
         console.log(error.message);
       }

@@ -77,7 +77,6 @@ function PetCard() {
       try {
         const response = await axios.get("http://localhost:5000/posts");
         const data = response.data;
-        console.log(data);
         setPets(data);
       } catch (error) {
         console.log(error.message);
