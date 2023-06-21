@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Card,
@@ -9,9 +9,28 @@ import {
 } from "@mui/material";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 import { Carousel } from "react-responsive-carousel";
+import { useParams } from "react-router";
+import axios from "axios";
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [postData, setPostData] = useState([])
+  const { id } = useParams()
+
+  useEffect(() =>{
+    const getPost = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/posts/${id}`)
+          const data = response.data
+          console.log(data);
+        } catch (error) {
+          console.log(error.message);
+        }
+    }
+    getPost()
+  },[id])
+
+ 
 
   // const handlePrevious = () => {
   //   setCurrentSlide((prevSlide) => prevSlide - 1);
