@@ -105,7 +105,7 @@ const CreatePostForm = () => {
                     {category}
                   </MenuItem>
                 ))}
-              </Select>
+              </Select> 
             </FormControl>
             {errors.category && (
               <Typography color="error">{errors.category}</Typography>
