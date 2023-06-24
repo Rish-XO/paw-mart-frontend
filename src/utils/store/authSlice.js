@@ -15,6 +15,14 @@ const authSlice = createSlice({
             state.role = data.role
             localStorage.setItem('token', data.token)
         },
-        logoutHandler
+        logoutHandler(state, action) {
+            console.log('logging out');
+            state.isLoggedIn = false;
+            state.role = null;
+            localStorage.removeItem('token')
+        }
     }
 })
+
+export const authActions=authSlice.actions;
+export default authSlice.reducer;
