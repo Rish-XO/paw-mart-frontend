@@ -11,7 +11,10 @@ const authSlice = createSlice({
         loginHandler(state, action) {
             const data = action.payload
             console.log(data);
-            
-        }
+            state.isLoggedIn = true;
+            state.role = data.role
+            localStorage.setItem('token', data.token)
+        },
+        logoutHandler
     }
 })
