@@ -5,8 +5,13 @@ const authSlice = createSlice({
     initialState: {
         isLoggedIn : false,
         role : null,
+        status: ''
     },
     reducers: {
-        loginHandler(state, action) 
+        loginHandler(state, action) {
+            const data = action.payload
+            console.log(data);
+            
+        }
     }
 })
