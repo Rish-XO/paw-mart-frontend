@@ -15,7 +15,7 @@ const authSlice = createSlice({
       state.role = data.role;
       localStorage.setItem("token", data.token);
     },
-    logoutHandler(state, action) {
+    logoutHandler(state) {
       console.log("logging out");
       state.isLoggedIn = false;
       state.role = null;
