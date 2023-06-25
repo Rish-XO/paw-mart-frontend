@@ -57,7 +57,7 @@ export default function LoginPage() {
     try {
       const response = await axios.post("http://localhost:5000/login", body);
       const { token, role } = response.data;
-      console.log(token, role);
+      // console.log(token, role);
 
       //verification of token
       // const check = await axios.post("http://localhost:5000/is-verify",null, {

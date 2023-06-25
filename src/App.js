@@ -10,6 +10,8 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -60,11 +62,30 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  try {
-    
-  } catch (error) {
-    
-  }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const checkAuthenticated = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/is-verify", null, {
+        headers: {
+          token: localStorage.getItem('token') ? localStorage.getItem('token') : 'jababa'
+        }
+      });
+  
+      const parseRes = res.data;
+      console.log(parseRes);
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      
+    } catch (err) {
+      setIsAuthenticated(false)
+      console.log(err.message);
+    }
+  };
+  
+  console.log(isAuthenticated);
+  useEffect(() => {
+    checkAuthenticated();
+  }, []);
+  
   return <RouterProvider router={router} />;
 }
 
