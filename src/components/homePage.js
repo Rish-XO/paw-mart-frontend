@@ -2,10 +2,15 @@ import React, { Fragment } from "react";
 import classes from "./HomePage.module.css";
 // import Footer from "./layout/Footer";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutHandler } from "../utils/store/authSlice";
 
 function HomePage() {
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+  const dispatch = useDispatch();
+  const logoutSubmit = () => {
+    dispatch(logoutHandler());
+  };
   return (
     <Fragment>
       <div className={classes.maindiv}>
@@ -30,7 +35,7 @@ function HomePage() {
                 </>
               )}
               {isLoggedIn && (
-                <Link className="button is-light mr-5" to="login">
+                <Link className="button is-light mr-5" to="#" onClick={logoutSubmit}>
                   Log Out
                 </Link>
               )}
