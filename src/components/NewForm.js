@@ -56,7 +56,9 @@ const CreatePostForm = () => {
         "http://localhost:5000/posts/new",
         body
       );
-      navigate("/posts");
+      const id = response.data.post_id;
+      console.log(id);
+      navigate(`/posts/${id}`);
     } catch (error) {
       console.log(error.message);
     }
