@@ -52,10 +52,20 @@ export default function LoginPage() {
       email: data.get("email"),
       password: data.get("password"),
     };
+    
     try {
       const response = await axios.post("http://localhost:5000/login", body);
       const { token, role } = response.data;
       console.log(token, role);
+
+      //verification of token
+      // const check = await axios.get("http://localhost:5000/is-verify", {
+      //   headers: {
+      //     token: `${token}`
+      //   }
+      // })
+      // console.log(check);
+
       dispatch(loginHandler({ token, role }));
       const { from } = location.state || { from: "/posts" };
       console.log(from);

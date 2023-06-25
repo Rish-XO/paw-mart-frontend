@@ -91,6 +91,15 @@ export default function SignUp() {
       );
       const { token, role } = response.data;
       console.log(token, role);
+
+      //verifying token
+      // const check = await axios.get("http://localhost:5000/is-verify", {
+      //   headers: {
+      //     token: `Bearer ${token}`
+      //   }
+      // })
+      // console.log(check.data);
+
       dispatch(loginHandler({ token, role }));
 
       const { from } = location.state || { from: "/posts" };
@@ -224,7 +233,7 @@ export default function SignUp() {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to="/login" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>
