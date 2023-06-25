@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -18,11 +18,23 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Navbar from "../components/layout/Navbar";
 import axios from "axios";
 import { loginHandler } from "../utils/store/authSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+  const userRole = useSelector((state) => state.authHandler.role);
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("userRole:", userRole);
+  }, [isLoggedIn, userRole]);
+  
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -79,7 +91,13 @@ export default function SignUp() {
       );
       const { token, role } = response.data;
       console.log(token, role);
-      loginHandler({ token, role });
+      dispatch( loginHandler({ token, role }))
+      
+      const {from} = location.state || {from: "/posts"}
+      console.log(from)
+      console.log(isLoggedIn, userRole);
+      navigate(from)
+
     } catch (error) {
       console.log(error.response.data);
       console.log(error.message);
