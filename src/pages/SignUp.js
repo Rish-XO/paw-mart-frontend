@@ -20,6 +20,7 @@ import axios from "axios";
 import { loginHandler } from "../utils/store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -233,7 +234,7 @@ export default function SignUp() {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to="/login" variant="body2">
+                  <Link component={RouterLink} to="/login" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>
