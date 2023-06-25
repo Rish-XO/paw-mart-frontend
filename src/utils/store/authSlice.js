@@ -23,6 +23,7 @@ const authSlice = createSlice({
     verifyHandler(state, action) {
       const data = action.payload;
       state.isVerified = data.status;
+      state.role = data.role
       state.user_id = data.id;
       state.isLoggedIn = true;
     },

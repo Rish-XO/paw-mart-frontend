@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
 
@@ -22,6 +23,8 @@ const CreatePostForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const id = useSelector(state => state.authHandler.user_id)
+  console.log(id);
 
   const navigate = useNavigate();
 
@@ -51,7 +54,7 @@ const CreatePostForm = () => {
 
     // Submit the form
     try {
-      const body = { category, breed, price, description };
+      const body = { category, breed, price, description, id };
       const response = await axios.post(
         "http://localhost:5000/posts/new",
         body
