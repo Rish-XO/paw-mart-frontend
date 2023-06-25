@@ -23,8 +23,8 @@ const CreatePostForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
-  const id = useSelector(state => state.authHandler.user_id)
-  console.log(id);
+  const user_id = useSelector((state) => state.authHandler.user_id);
+  // console.log(user_id);
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const CreatePostForm = () => {
 
     // Submit the form
     try {
-      const body = { category, breed, price, description, id };
+      const body = { category, breed, price, description, user_id };
       const response = await axios.post(
         "http://localhost:5000/posts/new",
         body
@@ -110,7 +110,7 @@ const CreatePostForm = () => {
                     {category}
                   </MenuItem>
                 ))}
-              </Select> 
+              </Select>
             </FormControl>
             {errors.category && (
               <Typography color="error">{errors.category}</Typography>
