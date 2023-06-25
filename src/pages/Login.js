@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../components/layout/Navbar';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -32,13 +33,15 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    const response = awa
   };
 
   return (

@@ -24,17 +24,17 @@ import { useLocation, useNavigate } from "react-router";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const userRole = useSelector((state) => state.authHandler.role);
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     console.log("isLoggedIn:", isLoggedIn);
     console.log("userRole:", userRole);
   }, [isLoggedIn, userRole]);
-  
+
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -91,13 +91,12 @@ export default function SignUp() {
       );
       const { token, role } = response.data;
       console.log(token, role);
-      dispatch( loginHandler({ token, role }))
-      
-      const {from} = location.state || {from: "/posts"}
-      console.log(from)
-      console.log(isLoggedIn, userRole);
-      navigate(from)
+      dispatch(loginHandler({ token, role }));
 
+      const { from } = location.state || { from: "/posts" };
+      console.log(from);
+      console.log(isLoggedIn, userRole);
+      navigate(from);
     } catch (error) {
       console.log(error.response.data);
       console.log(error.message);

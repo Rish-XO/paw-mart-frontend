@@ -9,7 +9,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
-  console.log("loggedIN:",isLoggedIn);
+  console.log("loggedIN:", isLoggedIn);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,9 +20,9 @@ function Navbar() {
   };
 
   const logoutSubmit = () => {
-    dispatch(logoutHandler())
-    closeMenu()
-  }
+    dispatch(logoutHandler());
+    closeMenu();
+  };
   return (
     <Fragment>
       <nav
@@ -92,15 +92,15 @@ function Navbar() {
                     </NavLink>
                   </>
                 )}
-                {isLoggedIn && 
-                <NavLink
-                  className="button is-light"
-                  to="#"
-                  onClick={logoutSubmit}
-                >
-                  Logout
-                </NavLink>
-                }
+                {isLoggedIn && (
+                  <NavLink
+                    className="button is-light"
+                    to="#"
+                    onClick={logoutSubmit}
+                  >
+                    Logout
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>
