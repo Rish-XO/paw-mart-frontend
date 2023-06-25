@@ -60,6 +60,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  try {
+    
+  } catch (error) {
+    
+  }
   return <RouterProvider router={router} />;
 }
 

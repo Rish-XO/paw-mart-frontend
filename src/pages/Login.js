@@ -17,6 +17,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { loginHandler } from "../utils/store/authSlice";
+import {Link as RouterLink} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -59,12 +60,12 @@ export default function LoginPage() {
       console.log(token, role);
 
       //verification of token
-      // const check = await axios.get("http://localhost:5000/is-verify", {
+      // const check = await axios.post("http://localhost:5000/is-verify",null, {
       //   headers: {
       //     token: `${token}`
       //   }
       // })
-      // console.log(check);
+      // if(check.data === true){}
 
       dispatch(loginHandler({ token, role }));
       const { from } = location.state || { from: "/posts" };
@@ -159,7 +160,7 @@ export default function LoginPage() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link component={RouterLink} to="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

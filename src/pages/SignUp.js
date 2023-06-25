@@ -94,7 +94,7 @@ export default function SignUp() {
       console.log(token, role);
 
       //verifying token
-      // const check = await axios.get("http://localhost:5000/is-verify", {
+      // const check = await axios.get("http://localhost:5000/is-verify",null, {
       //   headers: {
       //     token: `Bearer ${token}`
       //   }
