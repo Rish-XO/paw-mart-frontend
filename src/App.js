@@ -12,6 +12,8 @@ import Show from "./pages/Show";
 import Edit from "./pages/Edit";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +64,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const dispatch = useDispatch()
+  const isVerified = useSelector(state => state.authHandler.isVerified)
+  const user_id = useSelector(state => state.authHandler.user_id)
+  console.log("verification :" + isVerified)
   const checkAuthenticated = async () => {
     try {
       const res = await axios.post("http://localhost:5000/is-verify", null, {
@@ -73,15 +79,14 @@ function App() {
   
       const parseRes = res.data;
       console.log(parseRes);
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      parseRes.status === true ? dispatch(verifyHandler({status:parseRes.status, id: parseRes.id})) : dispatch(logoutHandler());
       
     } catch (err) {
-      setIsAuthenticated(false)
+      dispatch(logoutHandler())
       console.log(err.message);
     }
   };
-  
-  console.log(isAuthenticated);
+  console.log(isVerified, user_id);
   useEffect(() => {
     checkAuthenticated();
   }, []);

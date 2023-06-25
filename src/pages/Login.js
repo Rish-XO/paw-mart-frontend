@@ -17,7 +17,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { loginHandler } from "../utils/store/authSlice";
-import {Link as RouterLink} from 'react-router-dom'
+import { Link as RouterLink } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -53,10 +53,10 @@ export default function LoginPage() {
       email: data.get("email"),
       password: data.get("password"),
     };
-    
+
     try {
       const response = await axios.post("http://localhost:5000/login", body);
-      const { token, role } = response.data;
+      const { token, role, id } = response.data;
       // console.log(token, role);
 
       //verification of token
@@ -67,7 +67,7 @@ export default function LoginPage() {
       // })
       // if(check.data === true){}
 
-      dispatch(loginHandler({ token, role }));
+      dispatch(loginHandler({ token, role, id }));
       const { from } = location.state || { from: "/posts" };
       console.log(from);
       navigate(from);
