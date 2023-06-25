@@ -94,12 +94,12 @@ export default function SignUp() {
       console.log(token, role);
 
       //verifying token
-      // const check = await axios.get("http://localhost:5000/is-verify",null, {
+       // const check = await axios.post("http://localhost:5000/is-verify",null, {
       //   headers: {
-      //     token: `Bearer ${token}`
+      //     token: `${token}`
       //   }
       // })
-      // console.log(check.data);
+      // if(check.data === true){}
 
       dispatch(loginHandler({ token, role }));
 
