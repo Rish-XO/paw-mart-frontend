@@ -33,6 +33,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.role = null;
       state.isVerified = false;
+      state.user_id = null;
       localStorage.removeItem("token");
     },
   },
