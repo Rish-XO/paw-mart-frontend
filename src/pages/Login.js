@@ -83,7 +83,7 @@ export default function LoginPage() {
     if (isLoggedIn) {
       navigate("posts");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn,navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>

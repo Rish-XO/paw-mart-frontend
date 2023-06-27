@@ -90,7 +90,7 @@ const CreatePostForm = () => {
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h4" component="div">
@@ -164,3 +164,4 @@ const CreatePostForm = () => {
 };
 
 export default CreatePostForm;
+
