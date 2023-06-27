@@ -59,13 +59,11 @@ const CreatePostForm = () => {
     for (let i = 0; i < image.length; i++) {
       formData.append("image", image[i]);
     }
-    
 
     console.log(formData);
 
     // Submit the form
     try {
-
       // Upload image first
       const uploadResponse = await axios.post(
         "http://localhost:5000/uploadimages",
@@ -78,8 +76,7 @@ const CreatePostForm = () => {
       );
 
       const imageUrls = uploadResponse.data.imageUrls;
-      console.log("image Ulrs are ",imageUrls);
-
+      console.log("image Ulrs are ", imageUrls);
 
       const body = { category, breed, price, description, user_id };
       const response = await axios.post(
@@ -178,7 +175,15 @@ const CreatePostForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageUpload}
+            />
+            {errors.image && (
+              <Typography color="error">{errors.image}</Typography>
+            )}
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
