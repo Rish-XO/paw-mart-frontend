@@ -34,7 +34,10 @@ export default function SignUp() {
   useEffect(() => {
     console.log("isLoggedIn:", isLoggedIn);
     console.log("userRole:", userRole);
-  }, [isLoggedIn, userRole]);
+    if (isLoggedIn) {
+      navigate("/posts");
+    }
+  }, [isLoggedIn, userRole, navigate]);
 
   const initialFormState = {
     firstName: "",
@@ -94,7 +97,7 @@ export default function SignUp() {
       console.log(token, role);
 
       //verifying token
-       // const check = await axios.post("http://localhost:5000/is-verify",null, {
+      // const check = await axios.post("http://localhost:5000/is-verify",null, {
       //   headers: {
       //     token: `${token}`
       //   }
