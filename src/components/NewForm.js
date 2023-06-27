@@ -46,14 +46,41 @@ const CreatePostForm = () => {
     if (!description.trim()) {
       formErrors.description = "Description is required";
     }
+    if (!image || image.length === 0) {
+      formErrors.image = "Image is required";
+    }
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
 
+    const formData = new FormData();
+    for (let i = 0; i < image.length; i++) {
+      formData.append("image", image[i]);
+    }
+    
+
+    console.log(formData);
+
     // Submit the form
     try {
+
+      // Upload image first
+      const uploadResponse = await axios.post(
+        "http://localhost:5000/uploadimages",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const imageUrls = uploadResponse.data.imageUrls;
+      console.log("image Ulrs are ",imageUrls);
+
+
       const body = { category, breed, price, description, user_id };
       const response = await axios.post(
         "http://localhost:5000/posts/new",
@@ -84,8 +111,9 @@ const CreatePostForm = () => {
   };
 
   const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
+    const files = event.target.files;
+    console.log(files);
+    setImage(files);
   };
 
   return (
@@ -150,7 +178,7 @@ const CreatePostForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary">
@@ -164,4 +192,3 @@ const CreatePostForm = () => {
 };
 
 export default CreatePostForm;
-
