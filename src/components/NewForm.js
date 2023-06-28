@@ -23,7 +23,7 @@ const CreatePostForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
-  const[imageURL,setImageURL] = useState([])
+  const [imageURL, setImageURL] = useState([]);
   const user_id = useSelector((state) => state.authHandler.user_id);
   // console.log(user_id);
 
@@ -75,19 +75,28 @@ const CreatePostForm = () => {
           },
         }
       );
+      const imageUrlsFromServer = await uploadResponse.data.imageUrls;
 
-      const imageUrls = await uploadResponse.data.imageUrls;
-      console.log("image Ulrs are ", imageUrls);
+      console.log("image Ulrs are ", imageUrlsFromServer);
 
-      setImageURL(imageUrls)
+      setImageURL(...imageUrlsFromServer);
+      // console.log(imageURL);
 
-      const body = { category, breed, price, description, user_id ,imageURL};
+      const body = {
+        category,
+        breed,
+        price,
+        description,
+        user_id,
+        imageUrlsFromServer,
+      };
       const response = await axios.post(
         "http://localhost:5000/posts/new",
         body
       );
       const id = response.data.post_id;
       console.log(id);
+      // console.log(imageURL, "IMAGEEEs");
       navigate(`/posts/${id}`);
     } catch (error) {
       console.log(error.message);
@@ -118,6 +127,7 @@ const CreatePostForm = () => {
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
+      <div>{JSON.stringify(imageURL)}</div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <Grid container spacing={3}>
           <Grid item xs={12}>
