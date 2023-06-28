@@ -70,7 +70,7 @@ export default function LoginPage() {
       // if(check.data === true){}
 
       dispatch(loginHandler({ token, role, id }));
-      const { from } = location.state || { from: "/posts" };
+      const { from } = location.state || { from: "posts" };
       console.log(from);
       navigate(from);
     } catch (error) {

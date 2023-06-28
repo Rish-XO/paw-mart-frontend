@@ -23,6 +23,7 @@ const CreatePostForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const[imageUrls,setImageUrls] = useState([])
   const user_id = useSelector((state) => state.authHandler.user_id);
   // console.log(user_id);
 
@@ -78,7 +79,7 @@ const CreatePostForm = () => {
       const imageUrls = uploadResponse.data.imageUrls;
       console.log("image Ulrs are ", imageUrls);
 
-      const body = { category, breed, price, description, user_id };
+      const body = { category, breed, price, description, user_id ,imageUrls};
       const response = await axios.post(
         "http://localhost:5000/posts/new",
         body

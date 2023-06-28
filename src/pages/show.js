@@ -45,89 +45,89 @@ const FlexibleComponent = () => {
     <Container sx={{ marginTop: "100px" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
-        <Card sx={{ position: "relative" }}>
-
+          <Card sx={{ position: "relative" }}>
             {/* Main Card */}
-              <Carousel
-                selectedItem={currentSlide}
-                showThumbs={false}
-                showStatus={false}
-                emulateTouch
-                infiniteLoop
-                onChange={setCurrentSlide}
+            <Carousel
+              selectedItem={currentSlide}
+              showThumbs={false}
+              showStatus={false}
+              emulateTouch
+              infiniteLoop
+              onChange={setCurrentSlide}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "400px",
+                }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "400px",
+                <img
+                  src="https://images.unsplash.com/photo-1592754862816-1a21a4ea2281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"
+                  alt="pet 1"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
                   }}
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1592754862816-1a21a4ea2281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"
-                    alt="pet 1"
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain",
-                    }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "400px",
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "400px",
+                }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2576&q=80"
+                  alt="pet 2"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
                   }}
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2576&q=80"
-                    alt="pet 2"
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain",
-                    }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "400px",
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "400px",
+                }}
+              >
+                <img
+                  src="https://pawmartbucket.s3.eu-north-1.amazonaws.com/1687933763764_caleb-fisher-eZiTbYKgDSs-unsplash.jpg"
+                  alt="pet 3"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
                   }}
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1601758177266-bc599de87707?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                    alt="pet 3"
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                      objectFit: "contain",
-                    }}
-                  />
-                </Box>
-                {/* Add more images as needed */}
-              </Carousel>
-              <Container>
-
+                />
+              </Box>
+              {/* Add more images as needed */}
+            </Carousel>
+            <Container>
               <Typography variant="h6" gutterBottom>
                 {`price : ${postData.price} `}
               </Typography>
               <Typography variant="h5">Description</Typography>
-              <Typography variant="body2" sx={{marginBottom: "30px"}}>{postData.description}</Typography>
+              <Typography variant="body2" sx={{ marginBottom: "30px" }}>
+                {postData.description}
+              </Typography>
               <Link to="edit">
-              <Button
-                sx={{ position: "absolute", bottom: "8px", right: "8px" }} 
-                variant="contained"
+                <Button
+                  sx={{ position: "absolute", bottom: "8px", right: "8px" }}
+                  variant="contained"
                 >
-                Edit
-              </Button>
-                  </Link>
-                </Container>
+                  Edit
+                </Button>
+              </Link>
+            </Container>
           </Card>
         </Grid>
         <Grid item xs={12} md={4}>
