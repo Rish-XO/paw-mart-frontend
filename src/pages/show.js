@@ -73,7 +73,7 @@ const FlexibleComponent = () => {
                   }}
                 />
               </Box>
-              <Box
+              {/* <Box
                 sx={{
                   display: "flex",
                   justifyContent: "center",
@@ -108,7 +108,7 @@ const FlexibleComponent = () => {
                     objectFit: "contain",
                   }}
                 />
-              </Box>
+              </Box> */}
               {/* Add more images as needed */}
             </Carousel>
             <Container>

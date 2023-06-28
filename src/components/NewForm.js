@@ -127,7 +127,6 @@ const CreatePostForm = () => {
 
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
-      <div>{JSON.stringify(imageURL)}</div>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <Grid container spacing={3}>
           <Grid item xs={12}>
