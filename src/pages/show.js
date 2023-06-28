@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [postData, setPostData] = useState({});
+  const [images, setImages] = useState([])
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,7 +26,8 @@ const FlexibleComponent = () => {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
         console.log(data);
-        setPostData(data);
+        setPostData(data.post);
+        setImages(data.urls)
       } catch (error) {
         console.log(error.message);
       }
@@ -55,16 +57,18 @@ const FlexibleComponent = () => {
               infiniteLoop
               onChange={setCurrentSlide}
             >
-              <Box
+              {images.map((image) => {
+                return(
+                <Box
                 sx={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   height: "400px",
                 }}
-              >
+                >
                 <img
-                  src="https://images.unsplash.com/photo-1592754862816-1a21a4ea2281?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"
+                  src={image.url}
                   alt="pet 1"
                   style={{
                     maxWidth: "100%",
@@ -73,9 +77,10 @@ const FlexibleComponent = () => {
                   }}
                 />
               </Box>
+           ) })}
               {/* <Box
-                sx={{
-                  display: "flex",
+              sx={{
+                display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   height: "400px",
