@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Button,
+  CircularProgress,
   Container,
   FormControl,
   Grid,
@@ -24,7 +25,8 @@ const CreatePostForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
   const [imageURL, setImageURL] = useState([]);
-  const user_id = useSelector((state) => state.authHandler.user_id);
+  const [loading, setLoading]= useState(false)
+   const user_id = useSelector((state) => state.authHandler.user_id);
   // console.log(user_id);
 
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const CreatePostForm = () => {
       setErrors(formErrors);
       return;
     }
-
+  setLoading(true)
     const formData = new FormData();
     for (let i = 0; i < image.length; i++) {
       formData.append("image", image[i]);
@@ -97,8 +99,10 @@ const CreatePostForm = () => {
       const id = response.data.post_id;
       console.log(id);
       // console.log(imageURL, "IMAGEEEs");
+      setLoading(false)
       navigate(`/posts/${id}`);
     } catch (error) {
+      setLoading(false)
       console.log(error.message);
     }
   };
@@ -198,9 +202,12 @@ const CreatePostForm = () => {
             )}
           </Grid>
           <Grid item xs={12}>
+            {!loading &&
             <Button type="submit" variant="contained" color="primary">
               Submit
             </Button>
+            }
+            {loading && <CircularProgress />}
           </Grid>
         </Grid>
       </form>
