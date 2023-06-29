@@ -22,19 +22,16 @@ const CreatePostForm = () => {
   const [breed, setBreed] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [errors, setErrors] = useState({});
-  const [imageURL, setImageURL] = useState([]);
-  const [loading, setLoading]= useState(false)
-   const user_id = useSelector((state) => state.authHandler.user_id);
-  // console.log(user_id);
-
+  const [previewImages, setPreviewImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const user_id = useSelector((state) => state.authHandler.user_id);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Basic error checking
     const formErrors = {};
 
     if (!category) {
@@ -49,7 +46,7 @@ const CreatePostForm = () => {
     if (!description.trim()) {
       formErrors.description = "Description is required";
     }
-    if (!image || image.length === 0) {
+    if (image.length === 0) {
       formErrors.image = "Image is required";
     }
 
@@ -57,17 +54,15 @@ const CreatePostForm = () => {
       setErrors(formErrors);
       return;
     }
-  setLoading(true)
+
+    setLoading(true);
+
     const formData = new FormData();
     for (let i = 0; i < image.length; i++) {
       formData.append("image", image[i]);
     }
 
-    console.log(formData);
-
-    // Submit the form
     try {
-      // Upload image first
       const uploadResponse = await axios.post(
         "http://localhost:5000/uploadimages",
         formData,
@@ -77,12 +72,9 @@ const CreatePostForm = () => {
           },
         }
       );
-      const imageUrlsFromServer = await uploadResponse.data.imageUrls;
+      const imageUrlsFromServer = uploadResponse.data.imageUrls;
 
-      console.log("image Ulrs are ", imageUrlsFromServer);
-
-      setImageURL(...imageUrlsFromServer);
-      // console.log(imageURL);
+      setLoading(false);
 
       const body = {
         category,
@@ -97,12 +89,10 @@ const CreatePostForm = () => {
         body
       );
       const id = response.data.post_id;
-      console.log(id);
-      // console.log(imageURL, "IMAGEEEs");
-      setLoading(false)
+
       navigate(`/posts/${id}`);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error.message);
     }
   };
@@ -125,8 +115,24 @@ const CreatePostForm = () => {
 
   const handleImageUpload = (event) => {
     const files = event.target.files;
-    console.log(files);
-    setImage(files);
+    const imagePreviews = [];
+    const imageFiles = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        imagePreviews.push(e.target.result);
+        if (imagePreviews.length === files.length) {
+          setPreviewImages(imagePreviews);
+        }
+      };
+
+      reader.readAsDataURL(files[i]);
+      imageFiles.push(files[i]);
+    }
+
+    setImage(imageFiles);
   };
 
   return (
@@ -201,31 +207,28 @@ const CreatePostForm = () => {
               <Typography color="error">{errors.image}</Typography>
             )}
           </Grid>
-            
-            {/* image preview */}
-            {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <Typography variant="h6" component="div">
               Image Preview
             </Typography>
             <Grid container spacing={2}>
-              {imageURL.map((url, index) => (
+              {previewImages.map((preview, index) => (
                 <Grid item key={index}>
                   <img
-                    src={url}
+                    src={preview}
                     alt={`Preview ${index}`}
                     style={{ width: "100px", height: "100px" }}
                   />
                 </Grid>
               ))}
             </Grid>
-          </Grid> */}
-
-          <Grid item xs={12}>
-            {!loading &&
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-            }
+          </Grid>
+          <Grid item xs={12} sx={{marginBottom: '40px'}}>
+            {!loading && (
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            )}
             {loading && <CircularProgress />}
           </Grid>
         </Grid>
