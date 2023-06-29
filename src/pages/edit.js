@@ -36,7 +36,8 @@ const EditForm = () => {
     const getPost = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
-        const data = response.data;
+        const data = response.data.post;
+        const urls = response.data.urls;
         setCategory(data.category);
         setBreed(data.breed);
         setPrice(data.price);

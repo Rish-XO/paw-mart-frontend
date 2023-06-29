@@ -201,6 +201,25 @@ const CreatePostForm = () => {
               <Typography color="error">{errors.image}</Typography>
             )}
           </Grid>
+            
+            {/* image preview */}
+            {/* <Grid item xs={12}>
+            <Typography variant="h6" component="div">
+              Image Preview
+            </Typography>
+            <Grid container spacing={2}>
+              {imageURL.map((url, index) => (
+                <Grid item key={index}>
+                  <img
+                    src={url}
+                    alt={`Preview ${index}`}
+                    style={{ width: "100px", height: "100px" }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid> */}
+
           <Grid item xs={12}>
             {!loading &&
             <Button type="submit" variant="contained" color="primary">
