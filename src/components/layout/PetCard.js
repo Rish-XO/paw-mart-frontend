@@ -101,6 +101,7 @@ function PetCard() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  objectFit: "contain"
                 }}
                 image={pet.first_url}
                 title="green iguana"
