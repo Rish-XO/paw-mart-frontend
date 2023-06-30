@@ -80,7 +80,7 @@ const EditForm = () => {
 
     // Submit the form
     try {
-      const body = { category, breed, price, description };
+      const body = { category, breed, price, description, imageUrls };
       const response = await axios.put(
         `http://localhost:5000/posts/${id}/edit`,
         body
@@ -196,9 +196,9 @@ const EditForm = () => {
                   }}
                 />
                 <IconButton
-                  color="secondary"
+                  color=""
                   size="small"
-                  style={{ position: "absolute", top: "5px", right: "5px" }}
+                  style={{ position: "absolute", top: "", right: "5px" , color: "red"}}
                   onClick={() => handleImageDelete(url.image_id)}
                 >
                   <CloseIcon />
@@ -208,7 +208,7 @@ const EditForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
           </Grid>
           <Grid item xs={12}>
             <Button
