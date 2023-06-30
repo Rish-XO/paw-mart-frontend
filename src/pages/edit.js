@@ -22,6 +22,7 @@ const EditForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
+  const [imageUrls, setImageUrls] = useState([])
 
   const { id } = useParams();
 
@@ -42,7 +43,7 @@ const EditForm = () => {
         setBreed(data.breed);
         setPrice(data.price);
         setDescription(data.description);
-        console.log(data);
+        console.log(data, urls);
       } catch (error) {
         console.log(error.message);
       }
