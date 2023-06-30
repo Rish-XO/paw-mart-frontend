@@ -9,7 +9,9 @@ import {
   Select,
   TextField,
   Typography,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
@@ -22,7 +24,7 @@ const EditForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
-  const [imageUrls, setImageUrls] = useState([])
+  const [imageUrls, setImageUrls] = useState([]);
 
   const { id } = useParams();
 
@@ -43,6 +45,7 @@ const EditForm = () => {
         setBreed(data.breed);
         setPrice(data.price);
         setDescription(data.description);
+        setImageUrls(urls);
         console.log(data, urls);
       } catch (error) {
         console.log(error.message);
@@ -108,6 +111,12 @@ const EditForm = () => {
     setImage(file);
   };
 
+  const handleImageDelete = (urlId) => {
+    // Filter out the deleted image URL
+    const updatedUrls = imageUrls.filter((url) => url.image_id !== urlId);
+    setImageUrls(updatedUrls);
+  };
+
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
       <form onSubmit={handleSubmit}>
@@ -169,11 +178,45 @@ const EditForm = () => {
               helperText={errors.description}
             />
           </Grid>
+
+          {/* image previews */}
+          <Grid item xs={12}>
+            {imageUrls.map((url) => (
+              <div
+                style={{ position: "relative", display: "inline-block" }}
+                key={url.image_id}
+              >
+                <img
+                  src={url.url}
+                  alt="Preview"
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    marginRight: "10px",
+                  }}
+                />
+                <IconButton
+                  color="secondary"
+                  size="small"
+                  style={{ position: "absolute", top: "5px", right: "5px" }}
+                  onClick={() => handleImageDelete(url.image_id)}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </div>
+            ))}
+          </Grid>
+
           <Grid item xs={12}>
             <input type="file" accept="image/*" onChange={handleImageUpload} />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" onClick={goBack}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={goBack}
+            >
               Edit
             </Button>
             <Button
