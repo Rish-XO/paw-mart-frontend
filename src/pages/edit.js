@@ -209,8 +209,11 @@ const EditForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <label>Add more Images  </label>
-            <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
+            {/* <label>Add more Images  </label> */}
+            <Button variant="contained">
+
+            <input className="" type="file" accept="image/*" multiple onChange={handleImageUpload} />
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <Button
