@@ -118,7 +118,7 @@ const EditForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ marginTop: 10 }}>
+    <Container maxWidth="sm" sx={{ marginTop: 10, marginBottom:"10px" }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
