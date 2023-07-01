@@ -181,6 +181,7 @@ const EditForm = () => {
 
           {/* image previews */}
           <Grid item xs={12}>
+            <Typography>Remove images</Typography>
             {imageUrls.map((url) => (
               <div
                 style={{ position: "relative", display: "inline-block" }}
@@ -208,6 +209,7 @@ const EditForm = () => {
           </Grid>
 
           <Grid item xs={12}>
+            <label>Add more Images  </label>
             <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
           </Grid>
           <Grid item xs={12}>
