@@ -114,6 +114,7 @@ const EditForm = () => {
         `http://localhost:5000/posts/${id}/edit`,
         body
       );
+      navigate(`/posts/${id}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -259,7 +260,7 @@ const EditForm = () => {
               type="submit"
               variant="contained"
               color="primary"
-              onClick={goBack}
+              // onClick={goBack}
             >
               Edit
             </Button>
