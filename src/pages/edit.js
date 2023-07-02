@@ -117,8 +117,27 @@ const EditForm = () => {
     setImageUrls(updatedUrls);
   };
 
+  //styles for imageinput
+  const imageUploadStyle = {
+    display: "inline-block",
+    position: "relative",
+  };
+
+  const imageUploadLabelStyle = {
+    display: "inline-block",
+    padding: "10px 20px",
+    backgroundColor: "#e0e0e0",
+    color: "#fff",
+    cursor: "pointer",
+    borderRadius: "5px",
+  };
+
+  const imageInputStyle = {
+    display: "none",
+  };
+
   return (
-    <Container maxWidth="sm" sx={{ marginTop: 10, marginBottom:"10px" }}>
+    <Container maxWidth="sm" sx={{ marginTop: 10, marginBottom: "10px" }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -199,7 +218,12 @@ const EditForm = () => {
                 <IconButton
                   color=""
                   size="small"
-                  style={{ position: "absolute", top: "", right: "5px" , color: "red"}}
+                  style={{
+                    position: "absolute",
+                    top: "",
+                    right: "5px",
+                    color: "red",
+                  }}
                   onClick={() => handleImageDelete(url.image_id)}
                 >
                   <CloseIcon />
@@ -209,11 +233,20 @@ const EditForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-            {/* <label>Add more Images  </label> */}
-            <Button variant="contained" color="success">
-
-            <input className="" type="file" accept="image/*" multiple onChange={handleImageUpload} />
-            </Button>
+            {/* <Button variant="contained" color="success"> */}
+            <div className="image-upload">
+              <label htmlFor="image-input" className="image-upload-label">
+                Add more Images
+              </label>
+              <input
+                className="image-input"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageUpload}
+              />
+              {/* </Button> */}
+            </div>
           </Grid>
           <Grid item xs={12}>
             <Button
