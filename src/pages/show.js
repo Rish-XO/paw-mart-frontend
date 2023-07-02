@@ -18,7 +18,7 @@ const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState([])
-  const []
+  const [owner, setOwner] = useState(null)
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,8 +27,10 @@ const FlexibleComponent = () => {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
         console.log(data);
+        const name = data.owner.firstname + " " + data.owner.lastname
         setPostData(data.post);
         setImages(data.urls)
+        setOwner(name)
       } catch (error) {
         console.log(error.message);
       }
@@ -141,9 +143,9 @@ const FlexibleComponent = () => {
             {/* First Right Card */}
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Right Card 1
+                {owner}
               </Typography>
-              <Typography variant="body2">Right Card 1 Content</Typography>
+              <Typography variant="body2">chat with the seller</Typography>
             </CardContent>
           </Card>
           <Card>
