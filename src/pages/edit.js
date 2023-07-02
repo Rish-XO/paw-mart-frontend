@@ -79,16 +79,13 @@ const EditForm = () => {
       return;
     }
  
-    if(image){
-      const formData = new FormData();
-      for (let i = 0; i < image.length; i++) {
-        formData.append("image", image[i]);
-      }
-      console.log(formData);
-    }
- 
+
     // Submit the form
     try {
+     
+
+
+      
       const body = { category, breed, price, description, imageUrls };
       const response = await axios.put(
         `http://localhost:5000/posts/${id}/edit`,
