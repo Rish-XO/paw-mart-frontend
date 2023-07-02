@@ -18,6 +18,7 @@ const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState([])
+  const []
   const { id } = useParams();
 
   useEffect(() => {
