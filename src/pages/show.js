@@ -154,7 +154,7 @@ const FlexibleComponent = () => {
             {/* Second Right Card */}
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                <AccountBoxIcon /> {owner}
+                <AccountBoxIcon fontSize="large"/> {owner}
               </Typography>
               {/* <Typography variant="body2"></Typography> */}
               <Button variant="contained" endIcon={<QuestionAnswerIcon />}>Chat with seller</Button>
