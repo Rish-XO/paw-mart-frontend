@@ -8,6 +8,8 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router";
@@ -143,18 +145,19 @@ const FlexibleComponent = () => {
             {/* First Right Card */}
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                {owner}
+                Right Card 1
               </Typography>
-              <Typography variant="body2">chat with the seller</Typography>
+              <Typography variant="body2">Right Card 1 Content</Typography>
             </CardContent>
           </Card>
-          <Card>
+          <Card sx={{marginTop: '30px'}}>
             {/* Second Right Card */}
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Right Card 2
+                <AccountBoxIcon /> {owner}
               </Typography>
-              <Typography variant="body2">Right Card 2 Content</Typography>
+              {/* <Typography variant="body2"></Typography> */}
+              <Button variant="contained" endIcon={<QuestionAnswerIcon />}>Chat with seller</Button>
             </CardContent>
           </Card>
         </Grid>
