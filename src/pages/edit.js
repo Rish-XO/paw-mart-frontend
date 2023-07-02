@@ -73,11 +73,20 @@ const EditForm = () => {
       formErrors.description = "Description is required";
     }
 
+
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
-
+ 
+    if(image){
+      const formData = new FormData();
+      for (let i = 0; i < image.length; i++) {
+        formData.append("image", image[i]);
+      }
+      console.log(formData);
+    }
+ 
     // Submit the form
     try {
       const body = { category, breed, price, description, imageUrls };
