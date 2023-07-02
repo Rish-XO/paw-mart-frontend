@@ -8,8 +8,8 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router";
@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [postData, setPostData] = useState({});
-  const [images, setImages] = useState([])
-  const [owner, setOwner] = useState(null)
+  const [images, setImages] = useState([]);
+  const [owner, setOwner] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const FlexibleComponent = () => {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
         console.log(data);
-        const name = data.owner.firstname + " " + data.owner.lastname
+        const name = data.owner.firstname + " " + data.owner.lastname;
         setPostData(data.post);
-        setImages(data.urls)
-        setOwner(name)
+        setImages(data.urls);
+        setOwner(name);
       } catch (error) {
         console.log(error.message);
       }
@@ -63,26 +63,27 @@ const FlexibleComponent = () => {
               onChange={setCurrentSlide}
             >
               {images.map((image) => {
-                return(
-                <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "400px",
-                }}
-                >
-                <img
-                  src={image.url}
-                  alt="pet 1"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              </Box>
-           ) })}
+                return (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "400px",
+                    }}
+                  >
+                    <img
+                      src={image.url}
+                      alt="pet 1"
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </Box>
+                );
+              })}
               {/* <Box
               sx={{
                 display: "flex",
@@ -150,14 +151,26 @@ const FlexibleComponent = () => {
               <Typography variant="body2">Right Card 1 Content</Typography>
             </CardContent>
           </Card>
-          <Card sx={{marginTop: '30px'}}>
+          <Card sx={{ marginTop: "30px" }}>
             {/* Second Right Card */}
             <CardContent>
-              <Typography variant="h6" gutterBottom>
-                <AccountBoxIcon fontSize="large"/> {owner}
-              </Typography>
-              {/* <Typography variant="body2"></Typography> */}
-              <Button variant="contained" endIcon={<QuestionAnswerIcon />}>Chat with seller</Button>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item>
+                  <AccountBoxIcon fontSize="large" />
+                </Grid>
+                <Grid item>
+                  <Typography variant="h6">{owner}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    endIcon={<QuestionAnswerIcon />}
+                  >
+                    Chat with seller
+                  </Button>
+                </Grid>
+              </Grid>
             </CardContent>
           </Card>
         </Grid>
