@@ -46,7 +46,7 @@ const EditForm = () => {
         setPrice(data.price);
         setDescription(data.description);
         setImageUrls(urls);
-        console.log(data, urls);
+        // console.log(data, urls);
       } catch (error) {
         console.log(error.message);
       }
@@ -73,20 +73,43 @@ const EditForm = () => {
       formErrors.description = "Description is required";
     }
 
-
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
- 
 
     // Submit the form
     try {
-     
+      const formData = new FormData();
 
+      if (image) {
+        for (let i = 0; i < image.length; i++) {
+          formData.append("image", image[i]);
+        }
+      }
 
-      
-      const body = { category, breed, price, description, imageUrls };
+      const uploadResponse = await axios.post(
+        "http://localhost:5000/uploadimages",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const imageUrlsFromServer = uploadResponse.data.imageUrls;
+      console.log("urls #######################3", imageUrlsFromServer);
+
+      const body = {
+        category,
+        breed,
+        price,
+        description,
+        imageUrls,
+        imageUrlsFromServer,
+      };
+
       const response = await axios.put(
         `http://localhost:5000/posts/${id}/edit`,
         body
@@ -113,7 +136,7 @@ const EditForm = () => {
   };
 
   const handleImageUpload = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files;
     setImage(file);
   };
 
@@ -124,7 +147,7 @@ const EditForm = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ marginTop: 10, marginBottom:"10px" }}>
+    <Container maxWidth="sm" sx={{ marginTop: 10, marginBottom: "10px" }}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -205,7 +228,12 @@ const EditForm = () => {
                 <IconButton
                   color=""
                   size="small"
-                  style={{ position: "absolute", top: "", right: "5px" , color: "red"}}
+                  style={{
+                    position: "absolute",
+                    top: "",
+                    right: "5px",
+                    color: "red",
+                  }}
                   onClick={() => handleImageDelete(url.image_id)}
                 >
                   <CloseIcon />
@@ -217,7 +245,13 @@ const EditForm = () => {
           <Grid item xs={12}>
             {/* <label>Add more Images  </label> */}
             <Button variant="contained" color="success">
-            <input  className="" type="file" accept="image/*" multiple onChange={handleImageUpload} />
+              <input
+                className=""
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageUpload}
+              />
             </Button>
           </Grid>
           <Grid item xs={12}>
