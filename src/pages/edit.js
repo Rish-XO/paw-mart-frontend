@@ -26,7 +26,7 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
   const [imageUrls, setImageUrls] = useState([]);
-  const [ownerID, setOwnerID] = useState(null)
+  const [ownerID, setOwnerID] = useState(null);
   const currentUser = useSelector((state) => state.authHandler.user_id);
 
   const { id } = useParams();
@@ -49,18 +49,18 @@ const EditForm = () => {
         setPrice(data.price);
         setDescription(data.description);
         setImageUrls(urls);
-        setOwnerID(data.user_id)
+        setOwnerID(data.user_id);
         // console.log(data, urls);
-        console.log(ownerID, currentUser, ' ooooooooooooooooooooooooooooooo');
-        if(ownerID !== null && ownerID !== currentUser){
-          navigate(-1)
+        console.log(ownerID, currentUser, " ooooooooooooooooooooooooooooooo");
+        if (ownerID !== null && ownerID !== currentUser) {
+          navigate(-1);
         }
       } catch (error) {
         console.log(error.message);
       }
     };
     getPost();
-  }, [id,ownerID,currentUser,navigate]);
+  }, [id, ownerID, currentUser, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -118,10 +118,7 @@ const EditForm = () => {
         imageUrlsFromServer,
       };
 
-      await axios.put(
-        `http://localhost:5000/posts/${id}/edit`,
-        body
-      );
+      await axios.put(`http://localhost:5000/posts/${id}/edit`, body);
       navigate(`/posts/${id}`);
     } catch (error) {
       console.log(error.message);
