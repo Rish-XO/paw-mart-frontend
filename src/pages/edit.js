@@ -27,7 +27,7 @@ const EditForm = () => {
   const [errors, setErrors] = useState({});
   const [imageUrls, setImageUrls] = useState([]);
   const [ownerID, setOwnerID] = useState(null)
-  const user_id = useSelector((state) => state.authHandler.user_id);
+  const currentUser = useSelector((state) => state.authHandler.user_id);
 
   const { id } = useParams();
 
@@ -49,10 +49,10 @@ const EditForm = () => {
         setPrice(data.price);
         setDescription(data.description);
         setImageUrls(urls);
-        setOwnerID(data.post.user_id)
-        console.log(data, urls);
-        console.log(ownerID, user_id, ' ooooooooooooooooooooooooooooooo');
-        if(ownerID !== user_id){
+        setOwnerID(data.user_id)
+        // console.log(data, urls);
+        console.log(ownerID, currentUser, ' ooooooooooooooooooooooooooooooo');
+        if(ownerID !== null && ownerID !== currentUser){
           navigate(-1)
         }
       } catch (error) {
@@ -60,7 +60,7 @@ const EditForm = () => {
       }
     };
     getPost();
-  }, [id,ownerID,user_id]);
+  }, [id,ownerID,currentUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
