@@ -60,7 +60,7 @@ const EditForm = () => {
       }
     };
     getPost();
-  }, [id,ownerID,currentUser]);
+  }, [id,ownerID,currentUser,navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -118,7 +118,7 @@ const EditForm = () => {
         imageUrlsFromServer,
       };
 
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:5000/posts/${id}/edit`,
         body
       );
