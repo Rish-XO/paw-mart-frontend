@@ -15,13 +15,17 @@ import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [postData, setPostData] = useState({});
   const [images, setImages] = useState([]);
   const [owner, setOwner] = useState(null);
+  const [ownerID, setOwnerID] = useState(null);
+  const [showEdit, setShowEdit] = useState(false);
   const { id } = useParams();
+  const user_id = useSelector((state) => state.authHandler.user_id);
 
   useEffect(() => {
     const getPost = async () => {
@@ -33,6 +37,7 @@ const FlexibleComponent = () => {
         setPostData(data.post);
         setImages(data.urls);
         setOwner(name);
+        setOwnerID(data.post.user_id);
       } catch (error) {
         console.log(error.message);
       }
@@ -40,6 +45,13 @@ const FlexibleComponent = () => {
     getPost();
   }, [id]);
 
+  useEffect(() => {
+    if (ownerID === user_id) {
+      setShowEdit(true);
+    } else {
+      setShowEdit(false);
+    }
+  });
   // const handlePrevious = () => {
   //   setCurrentSlide((prevSlide) => prevSlide - 1);
   // };
@@ -130,14 +142,16 @@ const FlexibleComponent = () => {
               <Typography variant="body2" sx={{ marginBottom: "30px" }}>
                 {postData.description}
               </Typography>
-              <Link to="edit">
-                <Button
-                  sx={{ position: "absolute", bottom: "8px", right: "8px" }}
-                  variant="contained"
-                >
-                  Edit
-                </Button>
-              </Link>
+              {showEdit && (
+                <Link to="edit">
+                  <Button
+                    sx={{ position: "absolute", bottom: "8px", right: "8px" }}
+                    variant="contained"
+                  >
+                    Edit
+                  </Button>
+                </Link>
+              )}
             </Container>
           </Card>
         </Grid>
