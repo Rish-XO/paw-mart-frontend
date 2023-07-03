@@ -14,6 +14,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
 
@@ -25,6 +26,8 @@ const EditForm = () => {
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
   const [imageUrls, setImageUrls] = useState([]);
+  const [ownerID, setOwnerID] = useState(null)
+  const user_id = useSelector((state) => state.authHandler.user_id);
 
   const { id } = useParams();
 
@@ -46,13 +49,18 @@ const EditForm = () => {
         setPrice(data.price);
         setDescription(data.description);
         setImageUrls(urls);
-        // console.log(data, urls);
+        setOwnerID(data.post.user_id)
+        console.log(data, urls);
+        console.log(ownerID, user_id, ' ooooooooooooooooooooooooooooooo');
+        if(ownerID !== user_id){
+          navigate(-1)
+        }
       } catch (error) {
         console.log(error.message);
       }
     };
     getPost();
-  }, [id]);
+  }, [id,ownerID,user_id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

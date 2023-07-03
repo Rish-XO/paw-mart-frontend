@@ -51,7 +51,7 @@ const FlexibleComponent = () => {
     } else {
       setShowEdit(false);
     }
-  });
+  },[ownerID, user_id]);
   // const handlePrevious = () => {
   //   setCurrentSlide((prevSlide) => prevSlide - 1);
   // };
