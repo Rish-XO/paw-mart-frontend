@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import "./ChatPage.css";
@@ -6,9 +6,17 @@ import "./ChatPage.css";
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
 
+  useEffect(()=> {
+    const storedChat = localStorage.getItem("selectedChat")
+    if(storedChat) {
+      setSelectedChat(storedChat)
+    }
+  },[])
+
   const selectChatHandler = (name) => {
     // console.log(name);
     setSelectedChat(name);
+    localStorage.setItem("selectedChat", name)
   };
 
   const chatIsSelected = (name) => {
