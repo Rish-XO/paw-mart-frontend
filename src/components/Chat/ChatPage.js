@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
-import AnnouncementIcon from '@mui/icons-material/Announcement';
+import AnnouncementIcon from "@mui/icons-material/Announcement";
 import "./ChatPage.css";
 
 const ChatPage = () => {
@@ -29,7 +29,7 @@ const ChatPage = () => {
 
   const chatCloseBtnHandler = () => {
     setChatIsClosed(true);
-    setSelectedChat("")
+    setSelectedChat("");
   };
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -41,26 +41,18 @@ const ChatPage = () => {
             </Typography>
           </Box>
           <Paper
-          onClick={() => selectChatHandler("Afrin")}
+            onClick={() => selectChatHandler("Afrin")}
             sx={{ marginRight: "5px" }}
             className={`chat-list ${chatIsSelected("Afrin")}`}
           >
-            <div
-              className="chat-item"
-            >
-              Afrin
-            </div>
+            <div className="chat-item">Afrin</div>
           </Paper>
           <Paper
             onClick={() => selectChatHandler("Rishal")}
             sx={{ marginRight: "5px" }}
             className={`chat-list ${chatIsSelected("Rishal")}`}
           >
-            <div
-              className="chat-item"
-            >
-              Rishal
-            </div>
+            <div className="chat-item">Rishal</div>
             {/* Add more chat items */}
           </Paper>
         </Grid>
