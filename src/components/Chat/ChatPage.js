@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
-import AnnouncementIcon from "@mui/icons-material/Announcement";
+
 import "./ChatPage.css";
+import ChatFiller from "./ChatFiller";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
-  const [chatIsClosed, setChatIsClosed] = useState(false);
+  const [chatIsClosed, setChatIsClosed] = useState(true);
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -29,6 +30,7 @@ const ChatPage = () => {
 
   const chatCloseBtnHandler = () => {
     setChatIsClosed(true);
+    localStorage.removeItem("selectedChat")
     setSelectedChat("");
   };
   return (
@@ -58,8 +60,10 @@ const ChatPage = () => {
         </Grid>
 
         {/* the chat writing space */}
-        {!chatIsClosed && (
-          <Grid item xs={7}>
+        <Grid item xs={7}>
+          {chatIsClosed ? (
+            <ChatFiller />
+          ) : (
             <Paper className="chat-content">
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography variant="h6" className="chat-header">
@@ -103,8 +107,8 @@ const ChatPage = () => {
               </div>
               {/* Add more chat bubbles */}
             </Paper>
-          </Grid>
-        )}
+          )}
+        </Grid>
       </Grid>
     </Container>
   );
