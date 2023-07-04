@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ChatIcon from '@mui/icons-material/Chat';
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../../utils/store/authSlice";
@@ -66,13 +67,23 @@ function Navbar() {
             <div className="navbar-item">
               <div className="buttons">
                 {isLoggedIn && (
+                  <div>
                   <NavLink
                     className="button is-primary"
                     to="#"
                     onClick={closeMenu}
                   >
-                    <AccountCircleIcon />
+                    <ChatIcon />
                   </NavLink>
+            
+                  <NavLink sx={{marginRight: "10px"}}
+                    className="button is-primary"
+                    to="#"
+                    onClick={closeMenu}
+                  >
+                    <AccountCircleIcon/>
+                  </NavLink>
+                  </div>
                 )}
                 {!isLoggedIn && (
                   <>
