@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
-import ChatPage from "./pages/ChatPage";
+import Chat from "./pages/Chat";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "chat",
-        element: <ChatPage />
+        element: <Chat/>
       },
     ],
   },

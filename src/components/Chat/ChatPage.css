@@ -1,0 +1,41 @@
+.chat-page {
+    height: 100vh;
+  }
+  
+  .chat-list {
+    border-right: 1px solid #ccc;
+    overflow: auto;
+    padding: 16px;
+  }
+  
+  .chat-item {
+    cursor: pointer;
+    padding: 8px;
+  }
+  
+  .chat-content {
+    padding: 16px;
+  }
+  
+  .chat-header {
+    margin-bottom: 16px;
+  }
+  
+  .chat-bubble {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 8px;
+  }
+  
+  .message {
+    margin: 0;
+  }
+  

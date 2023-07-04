@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Grid, Paper, Typography } from '@mui/material';
-// import '../styles.css';
+import './ChatPage.css'
 
 const ChatPage = () => {
   return (
