@@ -10,7 +10,8 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
-import { useEffect} from "react";
+imp
+import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: "posts",
-        element: <PostsRootLayout />,   //included the navbar for every page under posts
+        element: <PostsRootLayout />, //included the navbar for every page under posts
         children: [
           {
             index: true,
@@ -33,22 +34,22 @@ const router = createBrowserRouter([
           {
             path: "new",
             id: "new",
-            element: <New />
+            element: <New />,
           },
           {
             path: ":id",
-            children:[
+            children: [
               {
-                index:true,
-                element: <Show />
+                index: true,
+                element: <Show />,
               },
               {
                 path: "edit",
                 id: "edit",
-                element: <Edit />
-              }
-            ]
-          }
+                element: <Edit />,
+              },
+            ],
+          },
         ],
       },
       {
@@ -57,32 +58,39 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <LoginPage />
-      }
+        element: <LoginPage />,
+      },
+      {
+        path: "chat",
+        element: <ChatPage />
+      },
     ],
   },
 ]);
 
 function App() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const dispatch = useDispatch()
-  const isVerified = useSelector(state => state.authHandler.isVerified)
-  const user_id = useSelector(state => state.authHandler.user_id)
-  console.log("verification :" + isVerified)
+  const dispatch = useDispatch();
+  const isVerified = useSelector((state) => state.authHandler.isVerified);
+  const user_id = useSelector((state) => state.authHandler.user_id);
+  console.log("verification :" + isVerified);
   const checkAuthenticated = async () => {
     try {
       const res = await axios.post("http://localhost:5000/is-verify", null, {
         headers: {
-          token: localStorage.getItem('token') ? localStorage.getItem('token') : 'jababa'
-        }
+          token: localStorage.getItem("token")
+            ? localStorage.getItem("token")
+            : "jababa",
+        },
       });
-  
+
       const parseRes = res.data;
       console.log(parseRes);
-      parseRes.status === true ? dispatch(verifyHandler({status:parseRes.status, id: parseRes.id})) : dispatch(logoutHandler());
-      
+      parseRes.status === true
+        ? dispatch(verifyHandler({ status: parseRes.status, id: parseRes.id }))
+        : dispatch(logoutHandler());
     } catch (err) {
-      dispatch(logoutHandler())
+      dispatch(logoutHandler());
       console.log(err.message);
     }
   };
@@ -90,7 +98,7 @@ function App() {
   useEffect(() => {
     checkAuthenticated();
   }, []);
-  
+
   return <RouterProvider router={router} />;
 }
 
