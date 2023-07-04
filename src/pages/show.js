@@ -176,13 +176,15 @@ const FlexibleComponent = () => {
                   <Typography variant="h6">{owner}</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    endIcon={<QuestionAnswerIcon />}
-                  >
-                    Chat with seller
-                  </Button>
+                  <Link to="/chat">
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      endIcon={<QuestionAnswerIcon />}
+                    >
+                      Chat with seller
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
             </CardContent>
