@@ -2,7 +2,11 @@
   /* height: 100vh; */
 }
 
-
+.inbox-header {
+  border: 3px solid #ccc;
+  padding: 10px;
+  margin-right: 5px;
+}
 
 .chat-list {
   border-right: 1px solid #ccc;
