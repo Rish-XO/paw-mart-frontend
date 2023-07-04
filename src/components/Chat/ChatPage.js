@@ -4,7 +4,7 @@ import './ChatPage.css'
 
 const ChatPage = () => {
   return (
-    <Container maxWidth="lg" className="chat-page">
+    <Container sx={{marginBottom: "10%"}} maxWidth="lg" className="chat-page">
       <Grid container>
         <Grid item xs={4}>
           <Paper className="chat-list">
