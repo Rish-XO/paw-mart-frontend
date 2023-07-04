@@ -40,7 +40,7 @@ const ChatPage = () => {
           <Paper className="chat-content">
             <Typography variant="h6" className="chat-header">
               <FaceIcon sx={{ marginRight: "5px" }} />
-              John Doe
+              {selectedChat}
             </Typography>
             <hr></hr>
             <div className="chat-bubble">
