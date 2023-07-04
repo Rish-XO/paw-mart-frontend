@@ -10,6 +10,10 @@ const ChatPage = () => {
     // console.log(name);
     setSelectedChat(name);
   };
+
+  const chatIsSelected = (name) => {
+    return selectedChat === name ? "selected-chat" : ""
+  }
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
@@ -19,16 +23,17 @@ const ChatPage = () => {
               INBOX
             </Typography>
           </Box>
-          <Paper sx={{ marginRight: "5px" }} className="chat-list">
+          <Paper sx={{ marginRight: "5px" }} className={`chat-list ${chatIsSelected("Afrin")}`}>
             <div
-              className="chat-item"
+            className="chat-item"
               onClick={() => selectChatHandler("Afrin")}
             >
               Afrin
             </div>
-            <hr></hr>
+          </Paper>
+          <Paper sx={{ marginRight: "5px" }} className={`chat-list ${chatIsSelected("Rishal")}`}>
             <div
-              className="chat-item"
+               className="chat-item"
               onClick={() => selectChatHandler("Rishal")}
             >
               Rishal

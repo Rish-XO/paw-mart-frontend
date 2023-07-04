@@ -2,6 +2,10 @@
   height: 100vh;
 } */
 
+.selected-chat {
+  background-color: #d9d4d4;
+}
+
 .inbox-header {
   border: 3px solid #ccc;
   padding: 10px;
