@@ -16,7 +16,7 @@ const ChatPage = () => {
           </Paper>
         </Grid>
         <Grid item xs={8}>
-          <Paper className="chat-content">
+          <Paper  className="chat-content">
             <Typography variant="h6" className="chat-header">
              <FaceIcon sx={{marginRight: "5px"}}/>
               John Doe

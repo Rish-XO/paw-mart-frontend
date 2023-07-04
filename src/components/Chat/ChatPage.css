@@ -27,13 +27,13 @@
     margin-bottom: 8px;
   }
   
-  .avatar {
+  /* .avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     background-color: #ccc;
     margin-right: 8px;
-  }
+  } */
   
   .message {
     margin: 0;
