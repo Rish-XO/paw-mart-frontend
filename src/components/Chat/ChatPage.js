@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import "./ChatPage.css";
 
 const ChatPage = () => {
+  const [selectedChat, setSelectedChat] = useState("");
+
+  const selectChatHandler = (name) => {
+    // console.log(name);
+    setSelectedChat(name);
+  };
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
         <Grid item xs={4}>
-        <Box className="inbox-header" sx={{ backgroundColor: "#7EFDB5 " }}>
-              <Typography variant="h4" fontWeight="bold">INBOX</Typography>
-            </Box>
+          <Box className="inbox-header" sx={{ backgroundColor: "#94E8D7" }}>
+            <Typography variant="h5" fontWeight="bold">
+              INBOX
+            </Typography>
+          </Box>
           <Paper sx={{ marginRight: "5px" }} className="chat-list">
-            <div className="chat-item">John Doe</div>
+            <div
+              className="chat-item"
+              onClick={() => selectChatHandler("Afrin")}
+            >
+              Afrin
+            </div>
             <hr></hr>
-            <div className="chat-item">Jane Smith</div>
+            <div
+              className="chat-item"
+              onClick={() => selectChatHandler("Rishal")}
+            >
+              Rishal
+            </div>
             {/* Add more chat items */}
           </Paper>
         </Grid>
