@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Grid, Paper, Typography } from '@mui/material';
+import FaceIcon from '@mui/icons-material/Face';
 import './ChatPage.css'
 
 const ChatPage = () => {
@@ -17,10 +18,11 @@ const ChatPage = () => {
         <Grid item xs={8}>
           <Paper className="chat-content">
             <Typography variant="h6" className="chat-header">
+             <FaceIcon sx={{marginRight: "5px"}}/>
               John Doe
             </Typography>
+            <hr></hr>
             <div className="chat-bubble">
-              <div className="avatar" />
               <div className="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
             </div>
             <div className="chat-bubble">
