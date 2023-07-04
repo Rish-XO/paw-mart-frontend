@@ -5,6 +5,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../../utils/store/authSlice";
+import { Box } from "@mui/material";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,23 +68,25 @@ function Navbar() {
             <div className="navbar-item">
               <div className="buttons">
                 {isLoggedIn && (
-                  <div>
+                  <Box sx={{marginRight: "8px"}}>
+
+                  <NavLink
+                    className="button is-primary"
+                    to="/chat"
+                    onClick={closeMenu}
+                    >
+                    <ChatIcon />
+                  </NavLink>
+            
                   <NavLink
                     className="button is-primary"
                     to="#"
                     onClick={closeMenu}
-                  >
-                    <ChatIcon />
-                  </NavLink>
-            
-                  <NavLink sx={{marginRight: "10px"}}
-                    className="button is-primary"
-                    to="#"
-                    onClick={closeMenu}
-                  >
+                    >
                     <AccountCircleIcon/>
                   </NavLink>
-                  </div>
+                    </Box>
+          
                 )}
                 {!isLoggedIn && (
                   <>
