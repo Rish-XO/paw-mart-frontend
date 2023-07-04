@@ -5,10 +5,10 @@ import './ChatPage.css'
 
 const ChatPage = () => {
   return (
-    <Container sx={{marginTop: "5rem"}} maxWidth="lg" className="chat-page">
+    <Container sx={{marginTop: "5rem"}} className="chat-page">
       <Grid container>
-        <Grid item xs={4}>
-          <Paper className="chat-list">
+        <Grid item xs={4} >
+          <Paper sx={{marginRight: '10px'}} className="chat-list">
             <div className="chat-item">John Doe</div>
             <hr></hr>
             <div className="chat-item">Jane Smith</div>
