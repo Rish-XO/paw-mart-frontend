@@ -10,11 +10,11 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
-imp
 import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
+import ChatPage from "./pages/ChatPage";
 
 const router = createBrowserRouter([
   {

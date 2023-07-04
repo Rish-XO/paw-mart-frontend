@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
-import '../styles.css';
+import { Container, Grid, Paper, Typography } from '@mui/material';
+// import '../styles.css';
 
 const ChatPage = () => {
   return (
