@@ -146,9 +146,9 @@ const ChatPage = () => {
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
                   {messages.map((msg) => (
-                    <div key={msg.id} className="chat-bubble">
+                    <Box key={msg.id} className="chat-bubble">
                       <div className="message">{msg.content}</div>
-                    </div>
+                    </Box>
                   ))}
                 </Box>
                 <div ref={messagesEndRef} />
