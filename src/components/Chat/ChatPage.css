@@ -8,13 +8,13 @@
 
 
 .inbox-header {
-  border:1px solid #ccc;
+  border:1px solid black;
   padding: 10px;
   margin-right: 5px;
 }
 
 .chat-list {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid black;
   overflow: auto;
   padding: 16px;
 }

@@ -115,6 +115,7 @@ const ChatPage = () => {
                   padding: "1rem",
                   display: "flex",
                   justifyContent: "space-between",
+                  border: "1px solid black"
                 }}
               >
                 <Typography variant="h6" className="chat-header">
