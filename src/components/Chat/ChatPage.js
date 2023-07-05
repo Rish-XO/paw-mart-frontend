@@ -73,7 +73,7 @@ const ChatPage = () => {
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
         <Grid item xs={5}>
-          <Box className="inbox-header" sx={{ backgroundColor: "#17b890" }}>
+          <Box className="inbox-header" sx={{ backgroundColor: "#2F97C1" }}>
             <Typography variant="h5" fontWeight="bold">
               INBOX
             </Typography>
@@ -110,7 +110,7 @@ const ChatPage = () => {
                 sx={{
                   position: "sticky",
                   top: 0,
-                  backgroundColor: "#EF5B5B",
+                  backgroundColor: "#587291",
                   zIndex: 1,
                   padding: "1rem",
                   display: "flex",
@@ -132,7 +132,7 @@ const ChatPage = () => {
                     cursor: "pointer",
                     transition: "background-color 0.3s ease",
                     "&:hover": {
-                      backgroundColor: "#8EE2D2 ",
+                      backgroundColor: "#1CCAD8 ",
                     },
                   }}
                   onClick={chatCloseBtnHandler}
