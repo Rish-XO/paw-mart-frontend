@@ -59,16 +59,16 @@ const ChatPage = () => {
       id: messages.length + 1,
       content: message,
     };
-    setMessages((prevMessages) => [...prevMessages, newMessages])
-    setMessage("")
+    setMessages((prevMessages) => [...prevMessages, newMessages]);
+    setMessage("");
   };
 
-  const enterKeyHandler =(e) => {
+  const enterKeyHandler = (e) => {
     // console.log(e.keyCode);
-    if(e.keyCode === 13) {
-      sendMessage()
+    if (e.keyCode === 13) {
+      sendMessage();
     }
-  }
+  };
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
@@ -101,52 +101,55 @@ const ChatPage = () => {
             <ChatFiller />
           ) : (
             <>
-            <Box sx={{  position: "sticky",
-                    top: 0,
-                    backgroundColor: "#9DC5BB",
-                    zIndex: 1,
-                    padding: "1rem",
+              <Box
+                sx={{
+                  position: "sticky",
+                  top: 0,
+                  backgroundColor: "#9DC5BB",
+                  zIndex: 1,
+                  padding: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography variant="h6" className="chat-header">
+                  <FaceIcon sx={{ marginRight: "5px" }} />
+                  {selectedChat}
+                </Typography>
+                <Box
+                  sx={{
+                    width: "2rem",
+                    height: "2rem",
+                    borderRadius: "50%",
                     display: "flex",
-                    justifyContent: "space-between", }}>
-                  <Typography variant="h6" className="chat-header">
-                    <FaceIcon sx={{ marginRight: "5px" }} />
-                    {selectedChat}
-                  </Typography>
-                  <Box
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "#8EE2D2 ",
+                    },
+                  }}
+                  onClick={chatCloseBtnHandler}
+                >
+                  <CloseIcon
                     sx={{
-                      width: "2rem",
-                      height: "2rem",
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      fontSize: "2rem",
                       cursor: "pointer",
-                      transition: "background-color 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: "#8EE2D2 ",
-                      },
                     }}
-                    onClick={chatCloseBtnHandler}
-                  >
-                    <CloseIcon
-                      sx={{
-                        fontSize: "2rem",
-                        cursor: "pointer",
-                      }}
-                    />
-                  </Box>
+                  />
                 </Box>
-              <Paper className="chat-content">
-                <Box  sx={{ flexGrow: 1, overflowY: "auto" }}>
-               {messages.map((msg) => (
-
-                 <div key={msg.id} className="chat-bubble">
-                  <div className="message">
-                   {msg.content}
-                  </div>
-                </div>
+              </Box>
+              <Paper
+                className="chat-content"
+                sx={{ backgroundColor: "#DEE5E5" }}
+              >
+                <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+                  {messages.map((msg) => (
+                    <div key={msg.id} className="chat-bubble">
+                      <div className="message">{msg.content}</div>
+                    </div>
                   ))}
-               
                 </Box>
                 <div ref={messagesEndRef} />
               </Paper>
@@ -159,10 +162,11 @@ const ChatPage = () => {
                   onChange={messageInputHandler}
                   onKeyDown={enterKeyHandler}
                   endDecorator={
-                    message &&
-                    <Button onClick={sendMessage}>
-                      <SendIcon />
-                    </Button>
+                    message && (
+                      <Button onClick={sendMessage}>
+                        <SendIcon />
+                      </Button>
+                    )
                   }
                 />
               </Box>
