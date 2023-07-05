@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,6 +12,8 @@ const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -20,6 +22,14 @@ const ChatPage = () => {
       setChatIsClosed(false);
     }
   }, []);
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll to bottom whenever messages change
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const selectChatHandler = (name) => {
     // console.log(name);
@@ -38,7 +48,20 @@ const ChatPage = () => {
     setSelectedChat("");
   };
 
-  const messageInputHandler = (e) => {};
+  const messageInputHandler = (e) => {
+    // console.log(e.target.value);
+    setMessage(e.target.value);
+  };
+
+  const sendMessage = () => {
+    if (message.trim() === "") return;
+    const newMessages = {
+      id: messages.length + 1,
+      content: message,
+    };
+    setMessages((prevMessages) => [...prevMessages, newMessages])
+    setMessage("")
+  };
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
@@ -102,26 +125,28 @@ const ChatPage = () => {
                   </Box>
                 </Box>
                 <hr></hr>
-                <div className="chat-bubble">
+                <Box>
+               {messages.map((msg) => (
+
+                 <div key={msg.id} className="chat-bubble">
                   <div className="message">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                   {msg.content}
                   </div>
                 </div>
-                <div className="chat-bubble">
-                  <div className="message">
-                    Ut eget neque aliquam, lacinia ligula at, accumsan turpis.
-                  </div>
-                </div>
-                {/* Add more chat bubbles */}
+                  ))}
+               
+                </Box>
+                <div ref={messagesEndRef} />
               </Paper>
               <Box>
                 <Input
+                  value={message}
                   color="neutral"
                   placeholder="Type a message"
                   size="lg"
                   onChange={messageInputHandler}
                   endDecorator={
-                    <Button>
+                    <Button onClick={sendMessage}>
                       <SendIcon />
                     </Button>
                   }
