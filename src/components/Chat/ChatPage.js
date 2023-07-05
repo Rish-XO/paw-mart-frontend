@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
@@ -11,6 +11,7 @@ import ChatFiller from "./ChatFiller";
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -36,6 +37,8 @@ const ChatPage = () => {
     localStorage.removeItem("selectedChat");
     setSelectedChat("");
   };
+
+  const messageInputHandler = (e) => {};
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
@@ -116,7 +119,12 @@ const ChatPage = () => {
                   color="neutral"
                   placeholder="Type a message"
                   size="lg"
-                  endDecorator={<SendIcon />}
+                  onChange={messageInputHandler}
+                  endDecorator={
+                    <Button>
+                      <SendIcon />
+                    </Button>
+                  }
                 />
               </Box>
             </>
