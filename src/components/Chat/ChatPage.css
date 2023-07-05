@@ -44,6 +44,8 @@
   flex-wrap: wrap; /* Wrap long messages */
   max-width: 80%;
   margin-left: auto;
+  word-break: break-word; /* Break long words */
+  overflow-wrap: break-word; 
 }
 
 /* .avatar {
