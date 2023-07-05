@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
+import SendIcon from "@mui/icons-material/Send";
+import Input from "@mui/joy/Input";
 
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
@@ -14,6 +16,7 @@ const ChatPage = () => {
     const storedChat = localStorage.getItem("selectedChat");
     if (storedChat) {
       setSelectedChat(storedChat);
+      setChatIsClosed(false);
     }
   }, []);
 
@@ -30,7 +33,7 @@ const ChatPage = () => {
 
   const chatCloseBtnHandler = () => {
     setChatIsClosed(true);
-    localStorage.removeItem("selectedChat")
+    localStorage.removeItem("selectedChat");
     setSelectedChat("");
   };
   return (
@@ -64,49 +67,59 @@ const ChatPage = () => {
           {chatIsClosed ? (
             <ChatFiller />
           ) : (
-            <Paper className="chat-content">
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography variant="h6" className="chat-header">
-                  <FaceIcon sx={{ marginRight: "5px" }} />
-                  {selectedChat}
-                </Typography>
-                <Box
-                  sx={{
-                    width: "2rem",
-                    height: "2rem",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "background-color 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "#8EE2D2 ",
-                    },
-                  }}
-                  onClick={chatCloseBtnHandler}
-                >
-                  <CloseIcon
+            <>
+              <Paper className="chat-content">
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="h6" className="chat-header">
+                    <FaceIcon sx={{ marginRight: "5px" }} />
+                    {selectedChat}
+                  </Typography>
+                  <Box
                     sx={{
-                      fontSize: "2rem",
+                      width: "2rem",
+                      height: "2rem",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                       cursor: "pointer",
+                      transition: "background-color 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#8EE2D2 ",
+                      },
                     }}
-                  />
+                    onClick={chatCloseBtnHandler}
+                  >
+                    <CloseIcon
+                      sx={{
+                        fontSize: "2rem",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </Box>
                 </Box>
+                <hr></hr>
+                <div className="chat-bubble">
+                  <div className="message">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </div>
+                </div>
+                <div className="chat-bubble">
+                  <div className="message">
+                    Ut eget neque aliquam, lacinia ligula at, accumsan turpis.
+                  </div>
+                </div>
+                {/* Add more chat bubbles */}
+              </Paper>
+              <Box>
+                <Input
+                  color="neutral"
+                  placeholder="Type a message"
+                  size="lg"
+                  endDecorator={<SendIcon />}
+                />
               </Box>
-              <hr></hr>
-              <div className="chat-bubble">
-                <div className="message">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </div>
-              </div>
-              <div className="chat-bubble">
-                <div className="message">
-                  Ut eget neque aliquam, lacinia ligula at, accumsan turpis.
-                </div>
-              </div>
-              {/* Add more chat bubbles */}
-            </Paper>
+            </>
           )}
         </Grid>
       </Grid>
