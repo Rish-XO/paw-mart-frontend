@@ -100,12 +100,17 @@ const ChatPage = () => {
           {chatIsClosed ? (
             <ChatFiller />
           ) : (
-            <>
+            <Box
+              sx={{
+                boxShadow:
+                  "0px 4px 6px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
               <Box
                 sx={{
                   position: "sticky",
                   top: 0,
-                  backgroundColor: "#9DC5BB",
+                  backgroundColor: "#EF5B5B",
                   zIndex: 1,
                   padding: "1rem",
                   display: "flex",
@@ -146,19 +151,20 @@ const ChatPage = () => {
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
                   {messages.map((msg) => (
-                    <Box key={msg.id} className="chat-bubble"  sx={{
-                      border: "1px solid",
-                      borderColor: "primary.main",
-                      backgroundColor: "primary.light",
-                      p: 1,
-                      borderRadius: "10px",
-                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                      width: "fit-content"
-                    }}>
-                      <Typography variant="body2">
-
-                      {msg.content}
-                      </Typography>
+                    <Box
+                      key={msg.id}
+                      className="chat-bubble"
+                      sx={{
+                        border: "1px solid",
+                        borderColor: "primary.main",
+                        backgroundColor: "primary.light",
+                        p: 1,
+                        borderRadius: "10px",
+                        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                        width: "fit-content",
+                      }}
+                    >
+                      <Typography variant="body2">{msg.content}</Typography>
                     </Box>
                   ))}
                 </Box>
@@ -181,7 +187,7 @@ const ChatPage = () => {
                   }
                 />
               </Box>
-            </>
+            </Box>
           )}
         </Grid>
       </Grid>
