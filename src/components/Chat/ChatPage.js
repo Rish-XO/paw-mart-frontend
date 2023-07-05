@@ -146,6 +146,7 @@ const ChatPage = () => {
                   size="lg"
                   onChange={messageInputHandler}
                   endDecorator={
+                    message &&
                     <Button onClick={sendMessage}>
                       <SendIcon />
                     </Button>
