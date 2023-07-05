@@ -146,8 +146,16 @@ const ChatPage = () => {
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
                   {messages.map((msg) => (
-                    <Box key={msg.id} className="chat-bubble">
-                      <div className="message">{msg.content}</div>
+                    <Box key={msg.id} className="chat-bubble"  sx={{
+                      border: "1px solid",
+                      borderColor: "primary.main",
+                      backgroundColor: "primary.light",
+                      p: 1,
+                      borderRadius: "10px",
+                      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                      width: "fit-content"
+                    }}>
+                      {msg.content}
                     </Box>
                   ))}
                 </Box>
