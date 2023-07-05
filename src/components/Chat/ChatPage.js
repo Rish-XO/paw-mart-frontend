@@ -62,11 +62,18 @@ const ChatPage = () => {
     setMessages((prevMessages) => [...prevMessages, newMessages])
     setMessage("")
   };
+
+  const enterKeyHandler =(e) => {
+    // console.log(e.keyCode);
+    if(e.keyCode === 13) {
+      sendMessage()
+    }
+  }
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
         <Grid item xs={5}>
-          <Box className="inbox-header" sx={{ backgroundColor: "#94E8D7" }}>
+          <Box className="inbox-header" sx={{ backgroundColor: "#17b890" }}>
             <Typography variant="h5" fontWeight="bold">
               INBOX
             </Typography>
@@ -94,8 +101,13 @@ const ChatPage = () => {
             <ChatFiller />
           ) : (
             <>
-              <Paper className="chat-content">
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{  position: "sticky",
+                    top: 0,
+                    backgroundColor: "#9DC5BB",
+                    zIndex: 1,
+                    padding: "1rem",
+                    display: "flex",
+                    justifyContent: "space-between", }}>
                   <Typography variant="h6" className="chat-header">
                     <FaceIcon sx={{ marginRight: "5px" }} />
                     {selectedChat}
@@ -124,8 +136,8 @@ const ChatPage = () => {
                     />
                   </Box>
                 </Box>
-                <hr></hr>
-                <Box>
+              <Paper className="chat-content">
+                <Box  sx={{ flexGrow: 1, overflowY: "auto" }}>
                {messages.map((msg) => (
 
                  <div key={msg.id} className="chat-bubble">
@@ -145,6 +157,7 @@ const ChatPage = () => {
                   placeholder="Type a message"
                   size="lg"
                   onChange={messageInputHandler}
+                  onKeyDown={enterKeyHandler}
                   endDecorator={
                     message &&
                     <Button onClick={sendMessage}>
