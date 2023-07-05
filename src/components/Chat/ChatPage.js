@@ -155,7 +155,10 @@ const ChatPage = () => {
                       boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
                       width: "fit-content"
                     }}>
+                      <Typography variant="body2">
+
                       {msg.content}
+                      </Typography>
                     </Box>
                   ))}
                 </Box>
