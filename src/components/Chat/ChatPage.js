@@ -152,7 +152,7 @@ const ChatPage = () => {
                   />
                 </Box>
               </Box>
-              <Paper
+              <Paper elevation={15}
                 className="chat-content"
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
