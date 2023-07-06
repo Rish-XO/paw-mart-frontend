@@ -73,7 +73,11 @@ const ChatPage = () => {
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
         <Grid item xs={5}>
-          <Box className="inbox-header" sx={{ backgroundColor: "#587291" }}>
+          <Box
+            borderRadius="8px 8px 0 0"
+            className="inbox-header"
+            sx={{ backgroundColor: "#38A3A5" }}
+          >
             <Typography variant="h5" fontWeight="bold">
               INBOX
             </Typography>
@@ -101,21 +105,23 @@ const ChatPage = () => {
             <ChatFiller />
           ) : (
             <Box
+              borderRadius="10px"
               sx={{
                 boxShadow:
                   "0px 4px 6px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3)",
               }}
             >
               <Box
+                borderRadius="8px 8px 0 0"
                 sx={{
                   position: "sticky",
                   top: 0,
-                  backgroundColor: "#587291",
+                  backgroundColor: "#38A3A5",
                   zIndex: 1,
                   padding: "1rem",
                   display: "flex",
                   justifyContent: "space-between",
-                  border: "1px solid black"
+                  border: "1px solid black",
                 }}
               >
                 <Typography variant="h6" className="chat-header">
