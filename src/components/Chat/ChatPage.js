@@ -73,7 +73,7 @@ const ChatPage = () => {
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
       <Grid container>
         <Grid item xs={5}>
-          <Box className="inbox-header" sx={{ backgroundColor: "#2F97C1" }}>
+          <Box className="inbox-header" sx={{ backgroundColor: "#587291" }}>
             <Typography variant="h5" fontWeight="bold">
               INBOX
             </Typography>
