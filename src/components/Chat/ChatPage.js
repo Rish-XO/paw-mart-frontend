@@ -57,11 +57,12 @@ const ChatPage = () => {
 
   const sendMessage = () => {
     if (message.trim() === "") return;
-    const newMessages = {
-      id: messages.length + 1,
-      content: message,
-    };
-    setMessages((prevMessages) => [...prevMessages, newMessages]);
+    // const newMessages = {
+    //   id: messages.length + 1,
+    //   content: message,
+    // };
+    // setMessages((prevMessages) => [...prevMessages, newMessages]);
+    socket.current.emit("chatMessage", message);
     setMessage("");
   };
 
@@ -74,19 +75,23 @@ const ChatPage = () => {
 
   // socket codes
   useEffect(() => {
-
     socket.current = io("http://localhost:3001");
 
-    socket.current.emit("chatMessage", message );
+
 
     socket.current.on("chatMessage", (message) => {
-      console.log(message)
-    })
+      console.log("ssssssss",message);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { id: message.length + 1, content: message },
+      ]);
+      // console.log(messages);
+    });
 
-    return () => {
-      socket.current.disconnect();
-    };
-  }, [message]);
+    // return () => {
+    //   socket.current.disconnect();
+    // };
+  }, []);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -177,6 +182,8 @@ const ChatPage = () => {
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+
+                {/* messages rendering */}
                   {messages.map((msg) => (
                     <Box
                       key={msg.id}
