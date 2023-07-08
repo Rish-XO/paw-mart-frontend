@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar'
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
+
 function Chat() {
   const navigate = useNavigate()
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
@@ -14,7 +15,6 @@ function Chat() {
     }
   }, [isLoggedIn, navigate]);
 
-  
 
   return (
     <div>
