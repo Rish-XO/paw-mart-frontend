@@ -1,10 +1,10 @@
-import React, { useEffect,useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/joy/Input";
-import { io } from 'socket.io-client'
+import { io } from "socket.io-client";
 
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
@@ -15,6 +15,7 @@ const ChatPage = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
+  const socket = useRef();
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -71,18 +72,17 @@ const ChatPage = () => {
     }
   };
 
-// socket codes
-useEffect(() => {
-  const socket = io('http://localhost:3001');
+  // socket codes
+  useEffect(() => {
 
-  socket.emit('chatMessage', "heloo server")
-  
+    socket.current = io("http://localhost:3001");
 
+    socket.current.emit("chatMessage", "heloo server");
 
-  return () => {
-    socket.disconnect();
-  };
-},[])
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -167,7 +167,8 @@ useEffect(() => {
                   />
                 </Box>
               </Box>
-              <Paper elevation={15}
+              <Paper
+                elevation={15}
                 className="chat-content"
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
