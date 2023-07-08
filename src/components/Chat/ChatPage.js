@@ -77,12 +77,16 @@ const ChatPage = () => {
 
     socket.current = io("http://localhost:3001");
 
-    socket.current.emit("chatMessage", "heloo server");
+    socket.current.emit("chatMessage", message );
+
+    socket.current.on("chatMessage", (message) => {
+      console.log(message)
+    })
 
     return () => {
       socket.current.disconnect();
     };
-  }, []);
+  }, [message]);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
