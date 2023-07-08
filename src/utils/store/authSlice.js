@@ -5,9 +5,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
   name: "authentication",
   initialState: {
-    isLoggedIn: false,
+    isLoggedIn: true,
     role: null,
-    isVerified: false,
+    isVerified: true,
     user_id: null,
   },
   reducers: {

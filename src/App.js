@@ -10,7 +10,7 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
-import { useEffect } from "react";
+import { useCallback, useEffect} from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
@@ -71,10 +71,11 @@ const router = createBrowserRouter([
 function App() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
+
   const isVerified = useSelector((state) => state.authHandler.isVerified);
   const user_id = useSelector((state) => state.authHandler.user_id);
   console.log("verification :" + isVerified);
-  const checkAuthenticated = async () => {
+  const checkAuthenticated = useCallback(async () => {
     try {
       const res = await axios.post("http://localhost:5000/is-verify", null, {
         headers: {
@@ -89,17 +90,22 @@ function App() {
       parseRes.status === true
         ? dispatch(verifyHandler({ status: parseRes.status, id: parseRes.id }))
         : dispatch(logoutHandler());
+
+    
     } catch (err) {
       dispatch(logoutHandler());
       console.log(err.message);
     }
-  };
+  },[dispatch]);
+
+
   console.log(isVerified, user_id);
   useEffect(() => {
     checkAuthenticated();
-  }, []);
+  }, [checkAuthenticated]);
 
-  return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />;
+    
 }
 
 export default App;

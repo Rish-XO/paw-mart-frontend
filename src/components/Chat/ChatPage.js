@@ -80,7 +80,7 @@ const ChatPage = () => {
     socket.current.emit("chatMessage", "heloo server");
 
     return () => {
-      socket.disconnect();
+      socket.current.disconnect();
     };
   }, []);
 
