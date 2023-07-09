@@ -8,6 +8,7 @@ import { io } from "socket.io-client";
 
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
+import { useParams } from "react-router";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
@@ -16,11 +17,12 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
   const socket = useRef();
+  const {roomID} = useParams
 
   useEffect(() => {
 
     const storedChat = localStorage.getItem("selectedChat");
-    
+
     if (storedChat) {
       setSelectedChat(storedChat);
       setChatIsClosed(false);
