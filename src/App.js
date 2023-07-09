@@ -10,7 +10,7 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import Show from "./pages/Show";
 import Edit from "./pages/Edit";
-import { useCallback, useEffect} from "react";
+import { useCallback, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
@@ -62,7 +62,16 @@ const router = createBrowserRouter([
       },
       {
         path: "chat",
-        element: <Chat/>
+        children: [
+          {
+            index: true,
+            element: <Chat />,
+          },
+          {
+            path: ":roomID",
+            element: <Chat />
+          }
+        ],
       },
     ],
   },
@@ -90,22 +99,18 @@ function App() {
       parseRes.status === true
         ? dispatch(verifyHandler({ status: parseRes.status, id: parseRes.id }))
         : dispatch(logoutHandler());
-
-    
     } catch (err) {
       dispatch(logoutHandler());
       console.log(err.message);
     }
-  },[dispatch]);
-
+  }, [dispatch]);
 
   console.log(isVerified, user_id);
   useEffect(() => {
     checkAuthenticated();
   }, [checkAuthenticated]);
 
-    return <RouterProvider router={router} />;
-    
+  return <RouterProvider router={router} />;
 }
 
 export default App;
