@@ -18,7 +18,9 @@ const ChatPage = () => {
   const socket = useRef();
 
   useEffect(() => {
+
     const storedChat = localStorage.getItem("selectedChat");
+    
     if (storedChat) {
       setSelectedChat(storedChat);
       setChatIsClosed(false);
@@ -77,7 +79,8 @@ const ChatPage = () => {
   useEffect(() => {
     socket.current = io("http://localhost:3001");
 
-
+  //join a room
+  socket.current.emit("joinRoom" , 6969696 )
 
     socket.current.on("chatMessage", (message) => {
       console.log("ssssssss",message);
@@ -222,6 +225,7 @@ const ChatPage = () => {
                 />
               </Box>
             </Box>
+            // end
           )}
         </Grid>
       </Grid>
