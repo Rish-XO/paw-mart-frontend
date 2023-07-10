@@ -40,15 +40,15 @@ const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const selectChatHandler = (name) => {
-    // console.log(name);
-    setSelectedChat(name);
+  const selectChatHandler = (id) => {
+    // console.log(id);
+    setSelectedChat(id);
     setChatIsClosed(false);
-    localStorage.setItem("selectedChat", name);
+    localStorage.setItem("selectedChat", id);
   };
 
-  const chatIsSelected = (name) => {
-    return selectedChat === name ? "selected-chat" : "";
+  const chatIsSelected = (id) => {
+    return selectedChat === id ? "selected-chat" : "";
   };
 
   const chatCloseBtnHandler = () => {
@@ -87,13 +87,24 @@ const ChatPage = () => {
       try {
         const response = await axios.get("http://localhost:5000/getAllChats");
         const chatData = response.data;
-        setChats(chatData);
+        const updatedData = chatData.map((chat) => {
+          const otherUser = {
+            id: chat.user1_id === currentUser ? chat.user2_id : chat.user1_id,
+            name:
+              chat.user1_id === currentUser
+                ? chat.user2_firstname + " " + chat.user2_lastname
+                : chat.user1_firstname + " " + chat.user1_lastname,
+          };
+          return { ...chat, otherUser };
+        });
+        setChats(updatedData);
+        // console.log(chats);
       } catch (error) {
         console.log(error.message);
       }
     };
     getRooms();
-  }, []);
+  }, [currentUser]);
 
   //chat details fetching
   // useEffect(() => {
@@ -148,11 +159,12 @@ const ChatPage = () => {
           {/* All chats */}
           {chats.map((chat) => (
             <Paper
-              onClick={() => selectChatHandler("Afrin")}
+              key={chat.room_id}
+              onClick={() => selectChatHandler(chat.room_id)}
               sx={{ marginRight: "5px" }}
-              className={`chat-list ${chatIsSelected("Afrin")}`}
+              className={`chat-list ${chatIsSelected(chat.room_id)}`}
             >
-              <div className="chat-item">{chat.user1_firstname}</div>
+              <div className="chat-item">{chat.otherUser.name}</div>
             </Paper>
           ))}
         </Grid>
