@@ -24,6 +24,7 @@ const FlexibleComponent = () => {
   const [owner, setOwner] = useState(null);
   const [ownerID, setOwnerID] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
+  const [roomID, setRoomID] = useState("")
   const { id } = useParams();
   const user_id = useSelector((state) => state.authHandler.user_id);
 
@@ -32,7 +33,7 @@ const FlexibleComponent = () => {
       try {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
-        console.log(data);
+        // console.log(data);
         const name = data.owner.firstname + " " + data.owner.lastname;
         setPostData(data.post);
         setImages(data.urls);
@@ -60,6 +61,19 @@ const FlexibleComponent = () => {
   //   setCurrentSlide((prevSlide) => prevSlide + 1);
   // };
 
+  const chatHandler=  async () => {
+    const post_id = postData.post_id
+    const body = {ownerID, user_id, post_id }
+    // console.log(body);
+    try {
+      const response = await axios.post("http://localhost:5000/roomId", body )
+      const roomID = response.data.roomID
+      console.log(roomID);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  
   return (
     <Container sx={{ marginTop: "100px" }}>
       <Grid container spacing={2}>
@@ -181,6 +195,7 @@ const FlexibleComponent = () => {
                       variant="contained"
                       fullWidth
                       endIcon={<QuestionAnswerIcon />}
+                      onClick={chatHandler}
                     >
                       Chat with seller
                     </Button>

@@ -130,9 +130,10 @@ const ChatPage = () => {
 
         {/* the chat writing space */}
         <Grid item xs={7}>
-          {chatIsClosed ? (
+          {chatIsClosed && !roomID ? (
             <ChatFiller />
           ) : (
+            // roomID &&
             <Box
               borderRadius="10px"
               sx={{
