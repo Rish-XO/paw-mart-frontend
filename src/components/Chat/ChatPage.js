@@ -8,7 +8,7 @@ import { io } from "socket.io-client";
 
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
@@ -18,6 +18,7 @@ const ChatPage = () => {
   const messagesEndRef = useRef(null);
   const socket = useRef();
   const { roomID } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -50,6 +51,7 @@ const ChatPage = () => {
     setChatIsClosed(true);
     localStorage.removeItem("selectedChat");
     setSelectedChat("");
+    navigate("/chat");
   };
 
   const messageInputHandler = (e) => {
@@ -64,7 +66,7 @@ const ChatPage = () => {
     //   content: message,
     // };
     // setMessages((prevMessages) => [...prevMessages, newMessages]);
-    socket.current.emit("chatMessage", message);
+    socket.current.emit("chatMessage", { roomID, message });
     setMessage("");
   };
 
@@ -79,11 +81,11 @@ const ChatPage = () => {
   useEffect(() => {
     socket.current = io("http://localhost:3001");
 
-  //join a room
-  socket.current.emit("joinRoom" , 6969696 )
+    //join a room
+    socket.current.emit("joinRoom", { roomID });
 
     socket.current.on("chatMessage", (message) => {
-      console.log("ssssssss",message);
+      console.log("ssssssss", message);
       setMessages((prevMessages) => [
         ...prevMessages,
         { id: message.length + 1, content: message },
@@ -94,7 +96,7 @@ const ChatPage = () => {
     // return () => {
     //   socket.current.disconnect();
     // };
-  }, []);
+  }, [roomID]);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -186,8 +188,7 @@ const ChatPage = () => {
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-
-                {/* messages rendering */}
+                  {/* messages rendering */}
                   {messages.map((msg) => (
                     <Box
                       key={msg.id}
