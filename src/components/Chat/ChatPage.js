@@ -9,12 +9,14 @@ import { io } from "socket.io-client";
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
 import { useNavigate, useParams } from "react-router";
+import axios from "axios";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [chats, setChats] = useState([])
   const messagesEndRef = useRef(null);
   const socket = useRef();
   const { roomID } = useParams();
@@ -77,6 +79,35 @@ const ChatPage = () => {
     }
   };
 
+  //getting all chats
+  useEffect(()=> {
+    const getRooms = async()=> {
+      try {
+            const response = await axios.get("http://localhost:5000/getAllChats")
+            const chatData = response.data
+            setChats(chatData)
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+getRooms()
+  },[])
+
+  //chat details fetching
+  // useEffect(() => {
+  //   const getChats = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:5000/getChatDetails/${roomID}`
+  //       );
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   getChats();
+  // }, [roomID]);
+
   // socket codes
   useEffect(() => {
     socket.current = io("http://localhost:3001");
@@ -111,21 +142,17 @@ const ChatPage = () => {
               INBOX
             </Typography>
           </Box>
-          <Paper
+          
+          {/* All chats */}
+          {chats.map((chat) =>( 
+            <Paper
             onClick={() => selectChatHandler("Afrin")}
             sx={{ marginRight: "5px" }}
             className={`chat-list ${chatIsSelected("Afrin")}`}
-          >
-            <div className="chat-item">Afrin</div>
+            >
+            <div className="chat-item">{chat.user1_firstname}</div>
           </Paper>
-          <Paper
-            onClick={() => selectChatHandler("Rishal")}
-            sx={{ marginRight: "5px" }}
-            className={`chat-list ${chatIsSelected("Rishal")}`}
-          >
-            <div className="chat-item">Rishal</div>
-            {/* Add more chat items */}
-          </Paper>
+            ) )}
         </Grid>
 
         {/* the chat writing space */}
