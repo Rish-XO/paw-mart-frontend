@@ -69,7 +69,7 @@ const FlexibleComponent = () => {
       const response = await axios.post("http://localhost:5000/roomId", body )
       const roomID = response.data.roomID
       // console.log(roomID);
-     navigate(`/chat/:${roomID}`)
+     navigate(`/chat/${roomID}`)
     
     } catch (error) {
       console.log(error.message);

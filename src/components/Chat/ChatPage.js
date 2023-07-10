@@ -17,10 +17,9 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
   const socket = useRef();
-  const {roomID} = useParams
+  const { roomID } = useParams();
 
   useEffect(() => {
-
     const storedChat = localStorage.getItem("selectedChat");
 
     if (storedChat) {
