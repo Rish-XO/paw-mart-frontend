@@ -21,7 +21,6 @@ const ChatPage = () => {
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
-
     if (storedChat) {
       setSelectedChat(storedChat);
       setChatIsClosed(false);
