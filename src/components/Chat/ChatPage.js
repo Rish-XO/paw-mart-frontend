@@ -238,6 +238,7 @@ const ChatPage = () => {
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+                  
                   {/* messages rendering */}
                   {messages.map((msg) => (
                     <Box
