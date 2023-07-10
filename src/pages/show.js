@@ -24,7 +24,6 @@ const FlexibleComponent = () => {
   const [owner, setOwner] = useState(null);
   const [ownerID, setOwnerID] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
-  const [roomID, setRoomID] = useState("")
   const { id } = useParams();
   const user_id = useSelector((state) => state.authHandler.user_id);
 
@@ -68,7 +67,9 @@ const FlexibleComponent = () => {
     try {
       const response = await axios.post("http://localhost:5000/roomId", body )
       const roomID = response.data.roomID
-      console.log(roomID);
+      // console.log(roomID);
+     
+    
     } catch (error) {
       console.log(error.message);
     }
@@ -190,7 +191,7 @@ const FlexibleComponent = () => {
                   <Typography variant="h6">{owner}</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Link to="/chat">
+               
                     <Button
                       variant="contained"
                       fullWidth
@@ -199,7 +200,7 @@ const FlexibleComponent = () => {
                     >
                       Chat with seller
                     </Button>
-                  </Link>
+              
                 </Grid>
               </Grid>
             </CardContent>
