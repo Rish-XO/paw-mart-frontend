@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
+  const [selectedChatName, setSelectedChatName] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -26,8 +27,10 @@ const ChatPage = () => {
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
-    if (storedChat) {
+    const storedName = localStorage.getItem("selectedName");
+    if (storedChat && storedName) {
       setSelectedChat(storedChat);
+      setSelectedChatName(storedName);
       setChatIsClosed(false);
     }
   }, []);
@@ -40,11 +43,13 @@ const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const selectChatHandler = (id) => {
+  const selectChatHandler = (id, name) => {
     // console.log(id);
     setSelectedChat(id);
+    setSelectedChatName(name);
     setChatIsClosed(false);
     localStorage.setItem("selectedChat", id);
+    localStorage.setItem("selectedName", name);
   };
 
   const chatIsSelected = (id) => {
@@ -54,7 +59,9 @@ const ChatPage = () => {
   const chatCloseBtnHandler = () => {
     setChatIsClosed(true);
     localStorage.removeItem("selectedChat");
+    localStorage.removeItem("selectedName");
     setSelectedChat("");
+    setSelectedChatName("");
     navigate("/chat");
   };
 
@@ -160,7 +167,9 @@ const ChatPage = () => {
           {chats.map((chat) => (
             <Paper
               key={chat.room_id}
-              onClick={() => selectChatHandler(chat.room_id)}
+              onClick={() =>
+                selectChatHandler(chat.room_id, chat.otherUser.name)
+              }
               sx={{ marginRight: "5px" }}
               className={`chat-list ${chatIsSelected(chat.room_id)}`}
             >
@@ -197,7 +206,7 @@ const ChatPage = () => {
               >
                 <Typography variant="h6" className="chat-header">
                   <FaceIcon sx={{ marginRight: "5px" }} />
-                  {selectedChat}
+                  {selectedChatName}
                 </Typography>
                 <Box
                   sx={{
