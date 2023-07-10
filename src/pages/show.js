@@ -12,7 +12,7 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 import { Carousel } from "react-responsive-carousel";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const FlexibleComponent = () => {
   const [showEdit, setShowEdit] = useState(false);
   const { id } = useParams();
   const user_id = useSelector((state) => state.authHandler.user_id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPost = async () => {
@@ -68,7 +69,7 @@ const FlexibleComponent = () => {
       const response = await axios.post("http://localhost:5000/roomId", body )
       const roomID = response.data.roomID
       // console.log(roomID);
-     
+     navigate(`/chat/:${roomID}`)
     
     } catch (error) {
       console.log(error.message);
