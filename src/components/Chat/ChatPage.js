@@ -10,17 +10,19 @@ import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [chats, setChats] = useState([])
+  const [chats, setChats] = useState([]);
   const messagesEndRef = useRef(null);
   const socket = useRef();
   const { roomID } = useParams();
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.authHandler.user_id);
 
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
@@ -80,18 +82,18 @@ const ChatPage = () => {
   };
 
   //getting all chats
-  useEffect(()=> {
-    const getRooms = async()=> {
+  useEffect(() => {
+    const getRooms = async () => {
       try {
-            const response = await axios.get("http://localhost:5000/getAllChats")
-            const chatData = response.data
-            setChats(chatData)
+        const response = await axios.get("http://localhost:5000/getAllChats");
+        const chatData = response.data;
+        setChats(chatData);
       } catch (error) {
         console.log(error.message);
       }
-    }
-getRooms()
-  },[])
+    };
+    getRooms();
+  }, []);
 
   //chat details fetching
   // useEffect(() => {
@@ -142,17 +144,17 @@ getRooms()
               INBOX
             </Typography>
           </Box>
-          
+
           {/* All chats */}
-          {chats.map((chat) =>( 
+          {chats.map((chat) => (
             <Paper
-            onClick={() => selectChatHandler("Afrin")}
-            sx={{ marginRight: "5px" }}
-            className={`chat-list ${chatIsSelected("Afrin")}`}
+              onClick={() => selectChatHandler("Afrin")}
+              sx={{ marginRight: "5px" }}
+              className={`chat-list ${chatIsSelected("Afrin")}`}
             >
-            <div className="chat-item">{chat.user1_firstname}</div>
-          </Paper>
-            ) )}
+              <div className="chat-item">{chat.user1_firstname}</div>
+            </Paper>
+          ))}
         </Grid>
 
         {/* the chat writing space */}
