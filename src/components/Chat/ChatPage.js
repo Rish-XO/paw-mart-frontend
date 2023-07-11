@@ -43,13 +43,14 @@ const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const selectChatHandler = (id, name) => {
+  const selectChatHandler = (id, name, room_id) => {
     // console.log(id);
     setSelectedChat(id);
     setSelectedChatName(name);
     setChatIsClosed(false);
     localStorage.setItem("selectedChat", id);
     localStorage.setItem("selectedName", name);
+    navigate(`/chat/${room_id}`)
   };
 
   const chatIsSelected = (id) => {
@@ -168,13 +169,13 @@ const ChatPage = () => {
             <Paper
               key={chat.room_id}
               onClick={() =>
-                selectChatHandler(chat.room_id, chat.otherUser.name)
+                selectChatHandler(chat.room_id, chat.otherUser.name, chat.room_id)
               }
               sx={{ marginRight: "5px" }}
               className={`chat-list ${chatIsSelected(chat.room_id)}`}
             >
               <div className="chat-item">
-                
+
               <Grid container alignItems="center" spacing={2}>
                    <Grid item>
                 <div className="chat-avatar">
