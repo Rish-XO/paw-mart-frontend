@@ -173,7 +173,23 @@ const ChatPage = () => {
               sx={{ marginRight: "5px" }}
               className={`chat-list ${chatIsSelected(chat.room_id)}`}
             >
-              <div className="chat-item">{chat.otherUser.name}</div>
+              <div className="chat-item">
+                
+              <Grid container alignItems="center" spacing={2}>
+                   <Grid item>
+                <div className="chat-avatar">
+                        <img src={chat.url} alt="post-avatar" />
+                </div>
+                   </Grid>
+                   <Grid item>
+
+                <Typography variant="subtitle1" fontWeight="bold">
+                  {chat.otherUser.name}
+                </Typography>
+                <Typography variant="body2">{chat.breed}</Typography>
+                   </Grid>
+              </Grid>
+              </div>
             </Paper>
           ))}
         </Grid>
@@ -238,7 +254,6 @@ const ChatPage = () => {
                 sx={{ backgroundColor: "#DEE5E5" }}
               >
                 <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-                  
                   {/* messages rendering */}
                   {messages.map((msg) => (
                     <Box
