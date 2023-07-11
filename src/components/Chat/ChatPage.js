@@ -26,6 +26,27 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
 
+  // socket codes
+  useEffect(() => {
+    socket.current = io("http://localhost:3001");
+
+    //join a room
+
+    socket.current.emit("joinRoom", { roomID });
+    console.log("joingin the room", roomID);
+
+    socket.current.on("chatMessage", (message) => {
+      console.log("ssssssss", message);
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    // console.log(messages);
+
+    return () => {
+      socket.current.disconnect();
+    };
+  }, [roomID]);
+
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
     const storedName = localStorage.getItem("selectedName");
@@ -130,26 +151,7 @@ const ChatPage = () => {
   //   getChats();
   // }, [roomID]);
 
-  // socket codes
-  useEffect(() => {
-    socket.current = io("http://localhost:3001");
-
-    //join a room
-
-    socket.current.emit("joinRoom", { roomID });
-    console.log("joingin the room", roomID);
-
-    socket.current.on("chatMessage", (message) => {
-      console.log("ssssssss", message);
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    // console.log(messages);
-
-    // return () => {
-    //   socket.current.disconnect();
-    // };
-  }, [roomID]);
+  
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -203,7 +205,7 @@ const ChatPage = () => {
           {chatIsClosed && !roomID ? (
             <ChatFiller />
           ) : (
-            // roomID &&
+            roomID &&
             <Box
               borderRadius="10px"
               sx={{
@@ -261,7 +263,7 @@ const ChatPage = () => {
                   {/* messages rendering */}
                   {messages.map((msg) => (
                     <Box
-                      key={msg.id}
+                      // key={msg.id}
                       className="chat-bubble"
                       sx={{
                         border: "1px solid",
