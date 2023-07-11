@@ -50,12 +50,27 @@ const ChatPage = () => {
   useEffect(() => {
     const storedChat = localStorage.getItem("selectedChat");
     const storedName = localStorage.getItem("selectedName");
-    if (storedChat && storedName) {
+    if (roomID) {
+      const chat = chats.find((chat) => chat.room_id === roomID);
+      if (chat) {
+        setSelectedChat(chat.room_id);
+        setSelectedChatName(chat.otherUser.name);
+        setChatIsClosed(false);
+        localStorage.setItem("selectedChat", chat.room_id);
+        localStorage.setItem("selectedName", chat.otherUser.name);
+      }
+    }else if(!roomID) {
+      setChatIsClosed(true);
+      localStorage.removeItem("selectedChat");
+      localStorage.removeItem("selectedName");
+      setSelectedChat("");
+      setSelectedChatName("");
+    } else if (storedChat && storedName) {
       setSelectedChat(storedChat);
       setSelectedChatName(storedName);
       setChatIsClosed(false);
     }
-  }, []);
+  }, [roomID, chats]);
 
   useEffect(() => {
     scrollToBottom(); // Scroll to bottom whenever messages change
@@ -100,7 +115,7 @@ const ChatPage = () => {
       content: message,
     };
     // setMessages((prevMessages) => [...prevMessages, newMessage]);
-    socket.current.emit("chatMessage", { roomID, message: newMessage});
+    socket.current.emit("chatMessage", { roomID, message: newMessage });
     setMessage("");
   };
 
@@ -150,8 +165,6 @@ const ChatPage = () => {
   //   };
   //   getChats();
   // }, [roomID]);
-
-  
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -205,100 +218,101 @@ const ChatPage = () => {
           {chatIsClosed && !roomID ? (
             <ChatFiller />
           ) : (
-            roomID &&
-            <Box
-              borderRadius="10px"
-              sx={{
-                boxShadow:
-                  "0px 4px 6px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3)",
-              }}
-            >
+            roomID && (
               <Box
-                borderRadius="8px 8px 0 0"
+                borderRadius="10px"
                 sx={{
-                  position: "sticky",
-                  top: 0,
-                  backgroundColor: "#38A3A5",
-                  zIndex: 1,
-                  padding: "1rem",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  border: "1px solid black",
+                  boxShadow:
+                    "0px 4px 6px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3)",
                 }}
               >
-                <Typography variant="h6" className="chat-header">
-                  <FaceIcon sx={{ marginRight: "5px" }} />
-                  {selectedChatName}
-                </Typography>
                 <Box
+                  borderRadius="8px 8px 0 0"
                   sx={{
-                    width: "2rem",
-                    height: "2rem",
-                    borderRadius: "50%",
+                    position: "sticky",
+                    top: 0,
+                    backgroundColor: "#38A3A5",
+                    zIndex: 1,
+                    padding: "1rem",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "background-color 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "#1CCAD8 ",
-                    },
+                    justifyContent: "space-between",
+                    border: "1px solid black",
                   }}
-                  onClick={chatCloseBtnHandler}
                 >
-                  <CloseIcon
+                  <Typography variant="h6" className="chat-header">
+                    <FaceIcon sx={{ marginRight: "5px" }} />
+                    {selectedChatName}
+                  </Typography>
+                  <Box
                     sx={{
-                      fontSize: "2rem",
+                      width: "2rem",
+                      height: "2rem",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                       cursor: "pointer",
+                      transition: "background-color 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#1CCAD8 ",
+                      },
                     }}
+                    onClick={chatCloseBtnHandler}
+                  >
+                    <CloseIcon
+                      sx={{
+                        fontSize: "2rem",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </Box>
+                </Box>
+                <Paper
+                  elevation={15}
+                  className="chat-content"
+                  sx={{ backgroundColor: "#DEE5E5" }}
+                >
+                  <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+                    {/* messages rendering */}
+                    {messages.map((msg) => (
+                      <Box
+                        // key={msg.id}
+                        className="chat-bubble"
+                        sx={{
+                          border: "1px solid",
+                          borderColor: "primary.main",
+                          backgroundColor: "primary.light",
+                          p: 1,
+                          borderRadius: "10px",
+                          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+                          width: "fit-content",
+                        }}
+                      >
+                        <Typography variant="body2">{msg.content}</Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                  <div ref={messagesEndRef} />
+                </Paper>
+                <Box>
+                  <Input
+                    value={message}
+                    color="neutral"
+                    placeholder="Type a message"
+                    size="lg"
+                    onChange={messageInputHandler}
+                    onKeyDown={enterKeyHandler}
+                    endDecorator={
+                      message && (
+                        <Button onClick={sendMessage}>
+                          <SendIcon />
+                        </Button>
+                      )
+                    }
                   />
                 </Box>
               </Box>
-              <Paper
-                elevation={15}
-                className="chat-content"
-                sx={{ backgroundColor: "#DEE5E5" }}
-              >
-                <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-                  {/* messages rendering */}
-                  {messages.map((msg) => (
-                    <Box
-                      // key={msg.id}
-                      className="chat-bubble"
-                      sx={{
-                        border: "1px solid",
-                        borderColor: "primary.main",
-                        backgroundColor: "primary.light",
-                        p: 1,
-                        borderRadius: "10px",
-                        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
-                        width: "fit-content",
-                      }}
-                    >
-                      <Typography variant="body2">{msg.content}</Typography>
-                    </Box>
-                  ))}
-                </Box>
-                <div ref={messagesEndRef} />
-              </Paper>
-              <Box>
-                <Input
-                  value={message}
-                  color="neutral"
-                  placeholder="Type a message"
-                  size="lg"
-                  onChange={messageInputHandler}
-                  onKeyDown={enterKeyHandler}
-                  endDecorator={
-                    message && (
-                      <Button onClick={sendMessage}>
-                        <SendIcon />
-                      </Button>
-                    )
-                  }
-                />
-              </Box>
-            </Box>
+            )
             // end
           )}
         </Grid>
