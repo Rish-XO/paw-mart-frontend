@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/joy/Input";
 import { io } from "socket.io-client";
+import { v4 as uuidv4 } from "uuid";
 
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
@@ -50,7 +51,7 @@ const ChatPage = () => {
     setChatIsClosed(false);
     localStorage.setItem("selectedChat", id);
     localStorage.setItem("selectedName", name);
-    navigate(`/chat/${room_id}`)
+    navigate(`/chat/${room_id}`);
   };
 
   const chatIsSelected = (id) => {
@@ -73,12 +74,12 @@ const ChatPage = () => {
 
   const sendMessage = () => {
     if (message.trim() === "") return;
-    // const newMessages = {
-    //   id: messages.length + 1,
-    //   content: message,
-    // };
-    // setMessages((prevMessages) => [...prevMessages, newMessages]);
-    socket.current.emit("chatMessage", { roomID, message });
+    const newMessage = {
+      id: uuidv4(),
+      content: message,
+    };
+    // setMessages((prevMessages) => [...prevMessages, newMessage]);
+    socket.current.emit("chatMessage", { roomID, message: newMessage});
     setMessage("");
   };
 
@@ -134,16 +135,16 @@ const ChatPage = () => {
     socket.current = io("http://localhost:3001");
 
     //join a room
+
     socket.current.emit("joinRoom", { roomID });
+    console.log("joingin the room", roomID);
 
     socket.current.on("chatMessage", (message) => {
       console.log("ssssssss", message);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { id: message.length + 1, content: message },
-      ]);
-      // console.log(messages);
+      setMessages((prevMessages) => [...prevMessages, message]);
     });
+
+    // console.log(messages);
 
     // return () => {
     //   socket.current.disconnect();
@@ -169,27 +170,29 @@ const ChatPage = () => {
             <Paper
               key={chat.room_id}
               onClick={() =>
-                selectChatHandler(chat.room_id, chat.otherUser.name, chat.room_id)
+                selectChatHandler(
+                  chat.room_id,
+                  chat.otherUser.name,
+                  chat.room_id
+                )
               }
               sx={{ marginRight: "5px" }}
               className={`chat-list ${chatIsSelected(chat.room_id)}`}
             >
               <div className="chat-item">
-
-              <Grid container alignItems="center" spacing={2}>
-                   <Grid item>
-                <div className="chat-avatar">
-                        <img src={chat.url} alt="post-avatar" />
-                </div>
-                   </Grid>
-                   <Grid item>
-
-                <Typography variant="subtitle1" fontWeight="bold">
-                  {chat.otherUser.name}
-                </Typography>
-                <Typography variant="body2">{chat.breed}</Typography>
-                   </Grid>
-              </Grid>
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item>
+                    <div className="chat-avatar">
+                      <img src={chat.url} alt="post-avatar" />
+                    </div>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {chat.otherUser.name}
+                    </Typography>
+                    <Typography variant="body2">{chat.breed}</Typography>
+                  </Grid>
+                </Grid>
               </div>
             </Paper>
           ))}
