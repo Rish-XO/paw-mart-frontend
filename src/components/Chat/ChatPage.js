@@ -24,7 +24,7 @@ const ChatPage = () => {
   const { roomID } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
-  const { messages } = useContext(SocketContext);
+  const { messages, setMessages } = useContext(SocketContext);
 
   // socket codes
   useEffect(() => {
@@ -158,6 +158,7 @@ const ChatPage = () => {
           `http://localhost:5000/getMessages/${selectedChat}`
         );
         console.log(response.data);
+        setMessages(response.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -165,7 +166,7 @@ const ChatPage = () => {
     if (selectedChat) {
       getChats();
     }
-  }, [selectedChat]);
+  }, [selectedChat,setMessages]);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
