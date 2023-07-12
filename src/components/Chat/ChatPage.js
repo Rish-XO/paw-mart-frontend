@@ -4,9 +4,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/joy/Input";
-// import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
-
 import "./ChatPage.css";
 import ChatFiller from "./ChatFiller";
 import { useNavigate, useParams } from "react-router";
@@ -20,37 +18,18 @@ const ChatPage = () => {
   const [selectedChatName, setSelectedChatName] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
-  // const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
   const messagesEndRef = useRef(null);
-  // const socket = useRef();
   const { roomID } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
-  const {messages} = useContext(SocketContext)
-
+  const { messages } = useContext(SocketContext);
 
   // socket codes
   useEffect(() => {
-    // socket.current = io("http://localhost:3001");
-
     //join a room
-
     socket.emit("joinRoom", { roomID });
     console.log("joingin the room", roomID);
-
-    // socket.on("chatMessage", (message) => {
-    //   console.log("ssssssss", message);
-    //   setMessages(( prevMessages) => {
-    //     const uniqueArray = Array.from(
-    //       new Set([...prevMessages, message].map(JSON.stringify))
-    //     ).map(JSON.parse);
-
-    //     return uniqueArray;
-    //   });
-    // });
-
-    // console.log({ messages });
   }, [roomID]);
 
   useEffect(() => {
