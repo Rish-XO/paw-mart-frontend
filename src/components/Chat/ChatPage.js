@@ -99,7 +99,6 @@ const ChatPage = () => {
       id: uuidv4(),
       content: message,
     };
-    // setMessages((prevMessages) => [...prevMessages, newMessage]);
     socket.emit("chatMessage", { roomID, message: newMessage });
     setMessage("");
   };
