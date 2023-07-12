@@ -261,7 +261,7 @@ const ChatPage = () => {
                     {/* messages rendering */}
                     {messages.map((msg) => (
                       <Box
-                        // key={msg.id}
+                        key={msg.id}
                         className="chat-bubble"
                         sx={{
                           border: "1px solid",
