@@ -14,7 +14,7 @@ const chatSlice = createSlice({
 });
 
 export const { setMessages } = chatSlice.actions;
-export default chatSlice.reducers;
+export default chatSlice.reducer;
 
 
 // rn u r not using , remove the cmt when u use it
