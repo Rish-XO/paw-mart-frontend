@@ -26,6 +26,7 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
 
+
   // socket codes
   useEffect(() => {
     socket.current = io("http://localhost:3001");
