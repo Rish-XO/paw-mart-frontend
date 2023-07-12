@@ -97,11 +97,11 @@ const ChatPage = () => {
   const sendMessage = async () => {
     if (message.trim() === "") return;
     const newMessage = {
-      id: uuidv4(),
+      message_id: uuidv4(),
       content: message,
-      roomID: selectedChat,
-      userID: currentUser,
-      time: moment().format("YYYY-MM-DD HH:mm:ss"),
+      room_id: selectedChat,
+      user_id: currentUser,
+      created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
 
     socket.emit("chatMessage", { roomID, message: newMessage });
@@ -111,12 +111,11 @@ const ChatPage = () => {
       const response = await axios.post(
         "http://localhost:5000/saveMessage",
         newMessage
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-      
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const enterKeyHandler = (e) => {
@@ -151,20 +150,22 @@ const ChatPage = () => {
     getRooms();
   }, [currentUser]);
 
-  //chat details fetching
-  // useEffect(() => {
-  //   const getChats = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:5000/getChatDetails/${roomID}`
-  //       );
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getChats();
-  // }, [roomID]);
+  // chat details fetching
+  useEffect(() => {
+    const getChats = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/getMessages/${selectedChat}`
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    if (selectedChat) {
+      getChats();
+    }
+  }, [selectedChat]);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
