@@ -99,7 +99,7 @@ const ChatPage = () => {
     const newMessage = {
       message_id: uuidv4(),
       content: message,
-      room_id: selectedChat,
+      room_id: roomID,
       user_id: currentUser,
       created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
@@ -155,7 +155,7 @@ const ChatPage = () => {
     const getChats = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/getMessages/${selectedChat}`
+          `http://localhost:5000/getMessages/${roomID}`
         );
         console.log(response.data);
         setMessages(response.data);
@@ -163,10 +163,10 @@ const ChatPage = () => {
         console.log(error.message);
       }
     };
-    if (selectedChat) {
+    if (roomID) {
       getChats();
     }
-  }, [selectedChat,setMessages]);
+  }, [roomID, setMessages]);
 
   return (
     <Container sx={{ marginTop: "5rem" }} className="chat-page">
@@ -290,7 +290,10 @@ const ChatPage = () => {
                           width: "fit-content",
                         }}
                       >
-                        <Typography variant="body2">{msg.content}</Typography>
+                        <Typography variant="body1">{msg.content}</Typography>
+                        <Typography variant="caption" sx={{marginLeft: "10px" , marginTop:"3px"}}>
+                          {moment(msg.created_at).format("hh:mm A")}
+                        </Typography>
                       </Box>
                     ))}
                   </Box>
