@@ -12,10 +12,11 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import socket from "../../utils/socket/socket";
 import { SocketContext } from "../../utils/socket/chatContext";
+import moment from "moment";
 
 const ChatPage = () => {
-  const [selectedChat, setSelectedChat] = useState("");
-  const [selectedChatName, setSelectedChatName] = useState("");
+  const [selectedChat, setSelectedChat] = useState(""); //storing room id
+  const [selectedChatName, setSelectedChatName] = useState(""); // just storing other user name to render
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
@@ -93,14 +94,29 @@ const ChatPage = () => {
     setMessage(e.target.value);
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (message.trim() === "") return;
     const newMessage = {
       id: uuidv4(),
       content: message,
+      roomID: selectedChat,
+      userID: currentUser,
+      time: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
+
     socket.emit("chatMessage", { roomID, message: newMessage });
     setMessage("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/saveMessage",
+        newMessage
+        );
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+      
   };
 
   const enterKeyHandler = (e) => {
