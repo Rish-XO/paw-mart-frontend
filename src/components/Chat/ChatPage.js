@@ -148,7 +148,7 @@ const ChatPage = () => {
       }
     };
     getRooms();
-  }, [currentUser]);
+  }, [currentUser, chats, message]);
 
   // chat details fetching
   useEffect(() => {
