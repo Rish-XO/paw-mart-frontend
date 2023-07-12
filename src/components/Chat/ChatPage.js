@@ -4,7 +4,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "@mui/joy/Input";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 
 import "./ChatPage.css";
@@ -36,16 +36,16 @@ const ChatPage = () => {
     socket.emit("joinRoom", { roomID });
     console.log("joingin the room", roomID);
 
-    socket.on("chatMessage", (message) => {
-      console.log("ssssssss", message);
-      setMessages(( prevMessages) => {
-        const uniqueArray = Array.from(
-          new Set([...prevMessages, message].map(JSON.stringify))
-        ).map(JSON.parse);
+    // socket.on("chatMessage", (message) => {
+    //   console.log("ssssssss", message);
+    //   setMessages(( prevMessages) => {
+    //     const uniqueArray = Array.from(
+    //       new Set([...prevMessages, message].map(JSON.stringify))
+    //     ).map(JSON.parse);
 
-        return uniqueArray;
-      });
-    });
+    //     return uniqueArray;
+    //   });
+    // });
 
     console.log({ messages });
   }, [roomID]);

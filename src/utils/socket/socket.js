@@ -7,7 +7,7 @@ const socket = io("http://localhost:3001");
 //     console.log("ssssssss", message);
 //   });
 
-export default socket;
+export default socket; 
 
 // socket.on("chatMessage", (message) => {
 //     console.log("ssssssss", message);
