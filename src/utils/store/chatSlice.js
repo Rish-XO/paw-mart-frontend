@@ -4,6 +4,7 @@ const chatSlice = createSlice({
   name: "chat",
   initialState: {
     messages: [],
+    currentRoom: null,
   },
   reducers: {
     setMessages(state, action) {
@@ -14,3 +15,6 @@ const chatSlice = createSlice({
 
 export const { setMessages } = chatSlice.actions;
 export default chatSlice.reducers;
+
+
+// rn u r not using , remove the cmt when u use it

@@ -12,6 +12,7 @@ import ChatFiller from "./ChatFiller";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import socket from "../../utils/socket/socket";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
@@ -21,31 +22,32 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
   const messagesEndRef = useRef(null);
-  const socket = useRef();
+  // const socket = useRef();
   const { roomID } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
 
-
   // socket codes
   useEffect(() => {
-    socket.current = io("http://localhost:3001");
+    // socket.current = io("http://localhost:3001");
 
     //join a room
 
-    socket.current.emit("joinRoom", { roomID });
+    socket.emit("joinRoom", { roomID });
     console.log("joingin the room", roomID);
 
-    socket.current.on("chatMessage", (message) => {
+    socket.on("chatMessage", (message) => {
       console.log("ssssssss", message);
-      setMessages((prevMessages) => [...prevMessages, message]);
+      setMessages(( prevMessages) => {
+        const uniqueArray = Array.from(
+          new Set([...prevMessages, message].map(JSON.stringify))
+        ).map(JSON.parse);
+
+        return uniqueArray;
+      });
     });
 
-    // console.log(messages);
-
-    return () => {
-      socket.current.disconnect();
-    };
+    console.log({ messages });
   }, [roomID]);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const ChatPage = () => {
         localStorage.setItem("selectedChat", chat.room_id);
         localStorage.setItem("selectedName", chat.otherUser.name);
       }
-    }else if(!roomID) {
+    } else if (!roomID) {
       setChatIsClosed(true);
       localStorage.removeItem("selectedChat");
       localStorage.removeItem("selectedName");
@@ -116,7 +118,7 @@ const ChatPage = () => {
       content: message,
     };
     // setMessages((prevMessages) => [...prevMessages, newMessage]);
-    socket.current.emit("chatMessage", { roomID, message: newMessage });
+    socket.emit("chatMessage", { roomID, message: newMessage });
     setMessage("");
   };
 
