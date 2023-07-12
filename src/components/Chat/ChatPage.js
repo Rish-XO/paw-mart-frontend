@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
@@ -13,19 +13,22 @@ import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import socket from "../../utils/socket/socket";
+import { SocketContext } from "../../utils/socket/chatContext";
 
 const ChatPage = () => {
   const [selectedChat, setSelectedChat] = useState("");
   const [selectedChatName, setSelectedChatName] = useState("");
   const [chatIsClosed, setChatIsClosed] = useState(true);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
   const messagesEndRef = useRef(null);
   // const socket = useRef();
   const { roomID } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.authHandler.user_id);
+  const {messages} = useContext(SocketContext)
+
 
   // socket codes
   useEffect(() => {
@@ -47,7 +50,7 @@ const ChatPage = () => {
     //   });
     // });
 
-    console.log({ messages });
+    // console.log({ messages });
   }, [roomID]);
 
   useEffect(() => {

@@ -4,14 +4,14 @@ import socket from "./socket";
 const SocketContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     socket.on("chatMessage", (message) => {
       console.log("ssssssss", message);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
-  });
+  },[]);
 
   return (
     <SocketContext.Provider
