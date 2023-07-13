@@ -33,7 +33,7 @@ const FlexibleComponent = () => {
       try {
         const response = await axios.get(`http://localhost:5000/posts/${id}`);
         const data = response.data;
-        // console.log(data);
+        console.log(data);
         const name = data.owner.firstname + " " + data.owner.lastname;
         setPostData(data.post);
         setImages(data.urls);
@@ -61,95 +61,60 @@ const FlexibleComponent = () => {
   //   setCurrentSlide((prevSlide) => prevSlide + 1);
   // };
 
-  const chatHandler=  async () => {
-    const post_id = postData.post_id
-    const body = {ownerID, user_id, post_id }
+  const chatHandler = async () => {
+    const post_id = postData.post_id;
+    const body = { ownerID, user_id, post_id };
     // console.log(body);
     try {
-      const response = await axios.post("http://localhost:5000/roomId", body )
-      const roomID = response.data.roomID
+      const response = await axios.post("http://localhost:5000/roomId", body);
+      const roomID = response.data.roomID;
       // console.log(roomID);
-     navigate(`/chat/${roomID}`)
-    
+      navigate(`/chat/${roomID}`);
     } catch (error) {
       console.log(error.message);
     }
-  }
-  
+  };
+
   return (
     <Container sx={{ marginTop: "100px" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
           <Card sx={{ position: "relative" }}>
             {/* Main Card */}
-            <Carousel
-              selectedItem={currentSlide}
-              showThumbs={false}
-              showStatus={false}
-              emulateTouch
-              infiniteLoop
-              onChange={setCurrentSlide}
-            >
-              {images.map((image) => {
-                return (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "400px",
-                    }}
-                  >
-                    <img
-                      src={image.url}
-                      alt="pet 1"
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
+            {images.length > 0 && (
+              <Carousel
+                selectedItem={currentSlide}
+                showThumbs={false}
+                showStatus={false}
+                emulateTouch
+                infiniteLoop
+                onChange={setCurrentSlide}
+              >
+                {images.map((image) => {
+                  return (
+                    <Box
+                      key={image.image_id}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "400px",
                       }}
-                    />
-                  </Box>
-                );
-              })}
-              {/* <Box
-              sx={{
-                display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "400px",
-                }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2576&q=80"
-                  alt="pet 2"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "400px",
-                }}
-              >
-                <img
-                  src="https://pawmartbucket.s3.eu-north-1.amazonaws.com/1687933763764_caleb-fisher-eZiTbYKgDSs-unsplash.jpg"
-                  alt="pet 3"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              </Box> */}
-              {/* Add more images as needed */}
-            </Carousel>
+                    >
+                      <img
+                        src={image.url}
+                        alt="pet 1"
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </Box>
+                  );
+                })}
+              </Carousel>
+            )}
             <Container>
               <Typography variant="h6" gutterBottom>
                 {`price : ${postData.price} `}
@@ -192,16 +157,14 @@ const FlexibleComponent = () => {
                   <Typography variant="h6">{owner}</Typography>
                 </Grid>
                 <Grid item xs={12}>
-               
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      endIcon={<QuestionAnswerIcon />}
-                      onClick={chatHandler}
-                    >
-                      Chat with seller
-                    </Button>
-              
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    endIcon={<QuestionAnswerIcon />}
+                    onClick={chatHandler}
+                  >
+                    Chat with seller
+                  </Button>
                 </Grid>
               </Grid>
             </CardContent>

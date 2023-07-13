@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../utils/store/authSlice";
 
+
 function HomePage() {
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const dispatch = useDispatch();
@@ -43,9 +44,9 @@ function HomePage() {
           </div>
         </div>
         <div className={`main ${classes.centered}`}>
-          <h4 className="is-size-4 has-text-weight-bold has-text-white">
-            Welcome to Paw Mart
-          </h4>
+          <h1 className="is-size-1 has-text-weight-bold is-italic has-text-white">
+            Find your "Purr-fect" pet companion
+          </h1>
           <p className="lead has-text-white is-size-5">
             Discover a world of wagging tails and purrs at our Pet Shop. We
             offer a wide range of lovable pets. Find your perfect furry
