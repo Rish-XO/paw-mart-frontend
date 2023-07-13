@@ -291,7 +291,10 @@ const ChatPage = () => {
                         }}
                       >
                         <Typography variant="body1">{msg.content}</Typography>
-                        <Typography variant="caption" sx={{marginLeft: "10px" , marginTop:"3px"}}>
+                        <Typography
+                          variant="caption"
+                          sx={{ marginLeft: "10px", marginTop: "3px" }}
+                        >
                           {moment(msg.created_at).format("hh:mm A")}
                         </Typography>
                       </Box>
