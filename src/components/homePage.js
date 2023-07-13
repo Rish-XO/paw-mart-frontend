@@ -44,7 +44,7 @@ function HomePage() {
           </div>
         </div>
         <div className={`main ${classes.centered}`}>
-          <h1 className="is-size-1 has-text-weight-bold is-italic has-text-white">
+          <h1  style={{ fontSize: "5rem" , fontWeight: "bold"}} className=" is-italic has-text-white">
             Find your "Purr-fect" pet companion
           </h1>
           <p className="lead has-text-white is-size-5">
