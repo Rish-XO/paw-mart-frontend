@@ -283,11 +283,12 @@ const ChatPage = () => {
                         sx={{
                           border: "1px solid",
                           borderColor: "primary.main",
-                          backgroundColor: "primary.light",
+                          backgroundColor: msg.user_id === currentUser ? "primary.light" : "secondary.light",
                           p: 1,
                           borderRadius: "10px",
                           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
                           width: "fit-content",
+                          marginLeft: msg.user_id === currentUser ? "auto" : "",
                         }}
                       >
                         <Typography variant="body1">{msg.content}</Typography>
