@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../utils/store/authSlice";
 
 
+
 function HomePage() {
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function HomePage() {
         </div>
         <div className={`main ${classes.centered}`}>
           <h1  style={{ fontSize: "5rem" , fontWeight: "bold"}} className=" is-italic has-text-white">
-            Find your "Purr-fect" pet companion
+            Find your <span style={{color: "#ffea00"}}>"Purr-fect"</span> pet companion
           </h1>
           <p className="lead has-text-white is-size-5">
             Discover a world of wagging tails and purrs at our Pet Shop. We
