@@ -129,7 +129,7 @@ const FlexibleComponent = () => {
               {showEdit && (
                 <Link to="edit">
                   <Button
-                    sx={{ position: "absolute", bottom: "8px", right: "8px" }}
+                    sx={{ position: "absolute", bottom: "8px", right: "8px"}}
                     variant="contained"
                   >
                     Edit
@@ -149,6 +149,7 @@ const FlexibleComponent = () => {
               <Typography variant="h3">₹ {postData.price}</Typography>
             </CardContent>
           </Card>
+          {!showEdit && 
           <Card sx={{ marginTop: "30px" }}>
             {/* Second Right Card */}
             <CardContent>
@@ -160,11 +161,12 @@ const FlexibleComponent = () => {
                   <Typography variant="h6" fontWeight="bold">{owner}</Typography>
                 </Grid>
                 <Grid item xs={12}>
+                 
                   <Button
-                    variant="contained"
-                    fullWidth
-                    endIcon={<QuestionAnswerIcon />}
-                    onClick={chatHandler}
+                  variant="contained"
+                  fullWidth
+                  endIcon={<QuestionAnswerIcon />}
+                  onClick={chatHandler}
                   >
                     Chat with seller
                   </Button>
@@ -172,6 +174,7 @@ const FlexibleComponent = () => {
               </Grid>
             </CardContent>
           </Card>
+                }
         </Grid>
       </Grid>
     </Container>
