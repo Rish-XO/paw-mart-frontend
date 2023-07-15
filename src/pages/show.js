@@ -141,9 +141,9 @@ const FlexibleComponent = () => {
             {/* First Right Card */}
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                Right Card 1
+                PRICE
               </Typography>
-              <Typography variant="body2">Right Card 1 Content</Typography>
+              <Typography variant="body2">{postData.price}</Typography>
             </CardContent>
           </Card>
           <Card sx={{ marginTop: "30px" }}>
