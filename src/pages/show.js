@@ -143,7 +143,7 @@ const FlexibleComponent = () => {
               <Typography variant="h6" gutterBottom>
                 PRICE
               </Typography>
-              <Typography variant="body2">{postData.price}</Typography>
+              <Typography variant="h3">₹ {postData.price}</Typography>
             </CardContent>
           </Card>
           <Card sx={{ marginTop: "30px" }}>
