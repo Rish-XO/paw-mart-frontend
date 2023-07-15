@@ -118,10 +118,10 @@ const FlexibleComponent = () => {
             )}
             <Container sx={{marginTop: "20px"}}>
             <Divider/>
-              {/* <Typography variant="h6" gutterBottom>
-                {`price : ${postData.price} `}
-              </Typography> */}
-              <Typography variant="h5">Description</Typography>
+              <Typography variant='h6' gutterBottom>
+                {postData.breed}    {postData.category} 
+              </Typography>
+              <Typography variant="h5" fontWeight="bold">Description</Typography>
               <Typography variant="body2" sx={{ marginBottom: "30px" }}>
                 {postData.description}
               </Typography>
