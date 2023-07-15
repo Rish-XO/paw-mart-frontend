@@ -7,6 +7,7 @@ import {
   Container,
   Box,
   Button,
+  Divider,
 } from "@mui/material";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -115,7 +116,8 @@ const FlexibleComponent = () => {
                 })}
               </Carousel>
             )}
-            <Container>
+            <Container sx={{marginTop: "20px"}}>
+            <Divider/>
               {/* <Typography variant="h6" gutterBottom>
                 {`price : ${postData.price} `}
               </Typography> */}
