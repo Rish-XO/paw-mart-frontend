@@ -116,9 +116,9 @@ const FlexibleComponent = () => {
               </Carousel>
             )}
             <Container>
-              <Typography variant="h6" gutterBottom>
+              {/* <Typography variant="h6" gutterBottom>
                 {`price : ${postData.price} `}
-              </Typography>
+              </Typography> */}
               <Typography variant="h5">Description</Typography>
               <Typography variant="body2" sx={{ marginBottom: "30px" }}>
                 {postData.description}
