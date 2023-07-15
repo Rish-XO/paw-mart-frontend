@@ -15,7 +15,7 @@ import { Carousel } from "react-responsive-carousel";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"; 
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
