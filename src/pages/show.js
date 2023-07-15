@@ -118,6 +118,7 @@ const FlexibleComponent = () => {
             )}
             <Container sx={{marginTop: "20px"}}>
             <Divider/>
+              <Typography variant="h5" fontWeight="bold">Breed</Typography>
               <Typography variant='h6' gutterBottom>
                 {postData.breed}    {postData.category} 
               </Typography>
@@ -156,7 +157,7 @@ const FlexibleComponent = () => {
                   <AccountBoxIcon fontSize="large" />
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6">{owner}</Typography>
+                  <Typography variant="h6" fontWeight="bold">{owner}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Button
