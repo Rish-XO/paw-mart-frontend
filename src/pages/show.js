@@ -167,7 +167,7 @@ const FlexibleComponent = () => {
                   fullWidth
                   endIcon={<QuestionAnswerIcon />}
                   onClick={chatHandler}
-                  >
+                  > 
                     Chat with seller
                   </Button>
                 </Grid>
