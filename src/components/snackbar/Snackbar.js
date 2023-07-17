@@ -4,34 +4,25 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { snackActions } from '../../assets/store/snackbarSlice';
+import { changeState } from '../../utils/store/snackbarSlice';
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 export default function CustomizedSnackbars() {
-//   const [open, setOpen] = React.useState(state);
-//   const [vertical,setVertical]=useState(vertical)
-//   const [horizontal,setHorizontal]=useState(horizontal)
+
 const dispatch=useDispatch();
-const details=useSelector(state=>state.snackBarHandler)
+const details=useSelector(state=>state.snackbarHandler)
 console.log(details)
-
-
-
-//   const handleClick = () => {
-    // setOpen(true); 
-//   };
 
   const handleClose = (event, reason) => {
     console.log(event,reason)
     if (reason === 'clickaway') {
       return;
     }
-    dispatch(snackActions.changeState())
-    // setSnakeState(false)
-    // setOpen(false);
+    dispatch(changeState())
   };
 
   return (
