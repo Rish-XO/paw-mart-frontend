@@ -4,6 +4,6 @@ const snackSlice = createSlice({
     name: 'snackbar',
     initialState: {
         state: false,
-        
+        severity
     }
 })
