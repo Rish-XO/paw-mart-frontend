@@ -21,5 +21,5 @@ const snackSlice = createSlice({
   },
 });
 
-export const {snackBarDetailsAdder, changeState} = snackSlice.actions;
+export const { snackBarDetailsAdder, changeState } = snackSlice.actions;
 export default snackSlice.reducer;
