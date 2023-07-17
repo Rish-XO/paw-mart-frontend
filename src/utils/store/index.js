@@ -3,7 +3,7 @@ import authSlice from "./authSlice";
 import snackbarSlice from "./snackbarSlice";
 
 const store = configureStore({
-  reducer: { authHandler: authSlice, snackbarHandler: snackbarSlice}
+  reducer: { authHandler: authSlice, snackbarHandler: snackbarSlice },
 });
 
 export default store;
