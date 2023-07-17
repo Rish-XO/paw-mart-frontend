@@ -20,5 +20,6 @@ const snackSlice = createSlice({
     },
   },
 });
+
 export const snackActions = snackSlice.actions;
 export default snackSlice.reducer;
