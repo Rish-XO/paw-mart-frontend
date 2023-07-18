@@ -19,11 +19,11 @@ import Chat from "./pages/Chat";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<>
-    <Root />
-    </>
-
-    ) ,
+    element: (
+      <>
+        <Root />
+      </>
+    ),
     id: "root",
     children: [
       { index: true, element: <Home /> },
@@ -73,8 +73,8 @@ const router = createBrowserRouter([
           },
           {
             path: ":roomID",
-            element: <Chat />
-          }
+            element: <Chat />,
+          },
         ],
       },
     ],
