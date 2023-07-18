@@ -15,12 +15,14 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
 import Chat from "./pages/Chat";
+import CustomizedSnackbars from "./components/snackbar/Snackbar";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
+      <CustomizedSnackbars />
         <Root />
       </>
     ),
