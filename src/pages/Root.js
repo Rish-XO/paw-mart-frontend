@@ -1,6 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import React from 'react'
 import { Outlet } from 'react-router'
+import CustomizedSnackbars from '../components/snackbar/Snackbar'
 
 
 function Root() {
@@ -8,6 +9,7 @@ function Root() {
     <main>
       <CssBaseline />
         <Outlet />
+        <CustomizedSnackbars />
     </main>
   )
 }
