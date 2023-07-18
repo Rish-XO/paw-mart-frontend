@@ -1,16 +1,14 @@
-import { CssBaseline } from '@mui/material'
-import React from 'react'
-import { Outlet } from 'react-router'
-
+import { CssBaseline } from "@mui/material";
+import React from "react";
+import { Outlet } from "react-router";
 
 function Root() {
   return (
     <main>
       <CssBaseline />
-        <Outlet />
-        
+      <Outlet />
     </main>
-  )
+  );
 }
 
-export default Root
+export default Root;
