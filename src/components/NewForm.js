@@ -13,7 +13,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
 
@@ -28,6 +29,7 @@ const CreatePostForm = () => {
   const [loading, setLoading] = useState(false);
   const user_id = useSelector((state) => state.authHandler.user_id);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -93,6 +95,7 @@ const CreatePostForm = () => {
       navigate(`/posts/${id}`);
     } catch (error) {
       setLoading(false);
+      dispatch(snackBarDetailsAdder({severity: "error", message: "Please try again!!"}))
       console.log(error.message);
     }
   };
