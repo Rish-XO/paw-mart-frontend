@@ -11,6 +11,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+
   console.log("loggedIN:", isLoggedIn);
 
   const toggleMenu = () => {
@@ -23,6 +24,7 @@ function Navbar() {
 
   const logoutSubmit = () => {
     dispatch(logoutHandler());
+
     closeMenu();
   };
   return (
