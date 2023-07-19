@@ -6,6 +6,7 @@ import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../../utils/store/authSlice";
 import { Box } from "@mui/material";
+import { snackBarDetailsAdder } from "../../utils/store/snackbarSlice";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +25,7 @@ function Navbar() {
 
   const logoutSubmit = () => {
     dispatch(logoutHandler());
-
+    dispatch(snackBarDetailsAdder({severity: "info", message: "You have been logged out successfully."}))
     closeMenu();
   };
   return (
