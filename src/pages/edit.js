@@ -14,7 +14,8 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
 
 const categories = ["dog", "cat", "fish", "bird", "others"];
 
@@ -28,6 +29,7 @@ const EditForm = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [ownerID, setOwnerID] = useState(null);
   const currentUser = useSelector((state) => state.authHandler.user_id);
+  const dispatch= useDispatch()
 
   const { id } = useParams();
 
@@ -120,6 +122,7 @@ const EditForm = () => {
 
       await axios.put(`http://localhost:5000/posts/${id}/edit`, body);
       navigate(`/posts/${id}`);
+      dispatch(snackBarDetailsAdder({severity: "success", message: "Successfully edited"}))
     } catch (error) {
       console.log(error.message);
     }
