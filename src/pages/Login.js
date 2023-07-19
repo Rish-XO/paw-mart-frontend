@@ -20,7 +20,8 @@ import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider} from 'firebase/auth';
+
 
 function Copyright(props) {
   return (
