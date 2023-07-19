@@ -19,6 +19,7 @@ import { useLocation, useNavigate } from "react-router";
 import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
+import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
 
 function Copyright(props) {
   return (
@@ -73,6 +74,7 @@ export default function LoginPage() {
       const { from } = location.state || { from: "posts" };
       console.log(from);
       navigate(from);
+      dispatch(snackBarDetailsAdder({severity: "success", message: "You are Logged In"}))
     } catch (error) {
       console.log(error.response.data);
       console.log(error.message);
