@@ -8,6 +8,8 @@ import { Typography, Grid } from "@mui/material";
 import "./PetCard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { snackBarDetailsAdder } from "../../utils/store/snackbarSlice";
 
 // const pets = [
 //   {
@@ -69,6 +71,7 @@ import axios from "axios";
 // ];
 
 function PetCard() {
+  const dispatch = useDispatch()
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
@@ -79,11 +82,12 @@ function PetCard() {
         const data = response.data;
         setPets(data);
       } catch (error) {
+        dispatch(snackBarDetailsAdder({severity: "error", message: "Server Error, Try again"}))
         console.log(error.message);
       }
     };
     getPosts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Grid container spacing={2} justifyContent="center">
