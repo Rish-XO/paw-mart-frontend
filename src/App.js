@@ -31,9 +31,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-
 
 const router = createBrowserRouter([
   {
@@ -82,7 +79,7 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <LoginPage />,
+        element: <LoginPage app={app} />,
       },
       {
         path: "chat",
