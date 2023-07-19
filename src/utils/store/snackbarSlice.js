@@ -5,7 +5,6 @@ const snackSlice = createSlice({
   initialState: {
     state: false,
     severity: "",
-    position: { vertical: "", horizontal: "" },
     message: "",
   },
   reducers: {
