@@ -20,8 +20,7 @@ import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
-import { getAuth, GoogleAuthProvider} from 'firebase/auth';
-
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 function Copyright(props) {
   return (
@@ -45,13 +44,12 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
-export default function LoginPage({app}) {
+export default function LoginPage({ app }) {
   const auth = getAuth(app);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn); 
+  const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
@@ -72,7 +70,7 @@ export default function LoginPage({app}) {
       password: data.get("password"),
     };
 
-    try {    
+    try {
       const response = await axios.post("http://localhost:5000/login", body);
       const { token, role, id } = response.data;
       // console.log(token, role);
@@ -89,7 +87,12 @@ export default function LoginPage({app}) {
       const { from } = location.state || { from: "posts" };
       console.log(from);
       navigate(from);
-      dispatch(snackBarDetailsAdder({severity: "success", message: "You are Logged In"}))
+      dispatch(
+        snackBarDetailsAdder({
+          severity: "success",
+          message: "You are Logged In",
+        })
+      );
     } catch (error) {
       console.log(error.response.data);
       console.log(error.message);
@@ -100,7 +103,7 @@ export default function LoginPage({app}) {
     if (isLoggedIn) {
       navigate("/posts");
     }
-  }, [isLoggedIn,navigate]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -178,7 +181,16 @@ export default function LoginPage({app}) {
               >
                 Sign In
               </Button>
-              <button onClick={handleGoogleLogin}>Login with Google</button>
+              <Button
+                type="button" // Add this to prevent form submission
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={handleGoogleLogin} // Call handleGoogleLogin when clicked
+              >
+                Login with Google
+              </Button>
+
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
