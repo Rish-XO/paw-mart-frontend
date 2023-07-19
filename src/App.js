@@ -16,6 +16,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler, verifyHandler } from "./utils/store/authSlice";
 import Chat from "./pages/Chat";
 import CustomizedSnackbars from "./components/snackbar/Snackbar";
+import { initializeApp } from "firebase/app";
+import 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDnBZ3Q0nERoATGyl9VAJForKc_6wQW6pk",
+  authDomain: "paw-mart-87d49.firebaseapp.com",
+  projectId: "paw-mart-87d49",
+  storageBucket: "paw-mart-87d49.appspot.com",
+  messagingSenderId: "127877811269",
+  appId: "1:127877811269:web:b7ae10ebd03fac59f3272c",
+  measurementId: "G-V0M0L79EFC"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
 
 const router = createBrowserRouter([
   {
