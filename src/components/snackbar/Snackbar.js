@@ -30,8 +30,9 @@ export default function CustomizedSnackbars() {
       <Snackbar
         open={details.state}
         autoHideDuration={6000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         onClose={handleClose}
+        style={{ marginTop: "80px" }}
       >
         <Alert
           onClose={handleClose}
