@@ -21,7 +21,7 @@ export default function CustomizedSnackbars() {
     }
     dispatch(changeState());
   };
-  
+
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       {/* <Button variant="outlined" onClick={handleClick}>
@@ -30,7 +30,7 @@ export default function CustomizedSnackbars() {
       <Snackbar
         open={details.state}
         autoHideDuration={6000}
-        anchorOrigin={details.position}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         onClose={handleClose}
       >
         <Alert
