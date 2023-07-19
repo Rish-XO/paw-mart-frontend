@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/layout/Navbar";
 import axios from "axios";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
@@ -50,6 +50,7 @@ export default function LoginPage({app}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn); 
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
@@ -95,11 +96,10 @@ export default function LoginPage({app}) {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if(token){
+    if (isLoggedIn) {
       navigate("/posts");
     }
-  }, [navigate]);
+  }, [isLoggedIn,navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
