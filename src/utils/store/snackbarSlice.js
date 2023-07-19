@@ -12,7 +12,6 @@ const snackSlice = createSlice({
       state.state = true;
       state.severity = action.payload.severity;
       state.message = action.payload.message;
-      state.position = action.payload.position;
     },
     changeState(state) {
       state.state = false;
