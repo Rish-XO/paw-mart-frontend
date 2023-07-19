@@ -14,12 +14,13 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/layout/Navbar";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 function Copyright(props) {
   return (
@@ -43,11 +44,23 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function LoginPage() {
+
+export default function LoginPage({app}) {
+  const auth = getAuth(app);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await auth.signInWithPopup(provider);
+      // You can access the user information from the result
+      console.log(result);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -82,10 +95,11 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate("posts");
+    const token = localStorage.getItem('token')
+    if(token){
+      navigate("/posts");
     }
-  }, [isLoggedIn,navigate]);
+  }, [navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -163,6 +177,7 @@ export default function LoginPage() {
               >
                 Sign In
               </Button>
+              <button onClick={handleGoogleLogin}>Login with Google</button>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
