@@ -93,6 +93,7 @@ const CreatePostForm = () => {
       const id = response.data.post_id;
 
       navigate(`/posts/${id}`);
+      dispatch(snackBarDetailsAdder({severity: "success", message: "Created a new post"}))
     } catch (error) {
       setLoading(false);
       dispatch(snackBarDetailsAdder({severity: "error", message: "Please try again!!"}))
