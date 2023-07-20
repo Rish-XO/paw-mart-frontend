@@ -21,8 +21,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import GoogleSignInButton from "../components/googleSignInButton/GoogleSignInButton";
 import GoogleIcon from '@mui/icons-material/Google';
+import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -52,6 +52,7 @@ export default function LoginPage({ app }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+  const [initialLoad, setInitialLoad] = useState(true)
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
@@ -102,10 +103,13 @@ export default function LoginPage({ app }) {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !initialLoad) {
       navigate("/posts");
+    } else {
+      setInitialLoad(false)
+      navigate("/login")
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate, initialLoad]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
