@@ -33,8 +33,8 @@ export default function SignUp() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("isLoggedIn:", isLoggedIn);
-    console.log("userRole:", userRole);
+    // console.log("isLoggedIn:", isLoggedIn);
+    // console.log("userRole:", userRole);
     if (isLoggedIn && !initialLoad) {
       navigate("/posts");
     } else {

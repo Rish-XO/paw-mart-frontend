@@ -20,7 +20,7 @@ import { loginHandler } from "../utils/store/authSlice";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useState } from "react";
 
@@ -97,7 +97,8 @@ export default function LoginPage({ app }) {
         })
       );
     } catch (error) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
+      dispatch(snackBarDetailsAdder({severity: 'error', message: error.response.data}))
       console.log(error.message);
     }
   };
