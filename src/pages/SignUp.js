@@ -25,6 +25,7 @@ import { Link as RouterLink } from "react-router-dom";
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [initialLoad, setInitialLoad] = useState(true);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const userRole = useSelector((state) => state.authHandler.role);
@@ -34,10 +35,13 @@ export default function SignUp() {
   useEffect(() => {
     console.log("isLoggedIn:", isLoggedIn);
     console.log("userRole:", userRole);
-    if (isLoggedIn) {
+    if (isLoggedIn && !initialLoad) {
       navigate("/posts");
+    } else {
+      setInitialLoad(false);
+      navigate("/signup");
     }
-  }, [isLoggedIn, userRole, navigate]);
+  }, [isLoggedIn, navigate, initialLoad]);
 
   const initialFormState = {
     firstName: "",
