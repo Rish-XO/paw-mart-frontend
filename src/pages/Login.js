@@ -21,6 +21,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { useEffect } from "react";
 import { snackBarDetailsAdder } from "../utils/store/snackbarSlice";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import GoogleSignInButton from "../components/googleSignInButton/GoogleSignInButton";
+import GoogleIcon from '@mui/icons-material/Google';
 
 function Copyright(props) {
   return (
@@ -184,13 +186,14 @@ export default function LoginPage({ app }) {
               <Button
                 type="button" // Add this to prevent form submission
                 fullWidth
-                variant="contained"
+                variant="outlined"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={handleGoogleLogin} // Call handleGoogleLogin when clicked
               >
+                <GoogleIcon sx={{marginRight:"10px"}}/>
                 Login with Google
               </Button>
-
+              {/* <GoogleSignInButton /> */}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
