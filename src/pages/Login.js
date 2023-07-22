@@ -50,7 +50,7 @@ export default function LoginPage({ app }) {
   const auth = getAuth(app);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); 
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
