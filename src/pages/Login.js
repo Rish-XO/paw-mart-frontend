@@ -61,7 +61,7 @@ export default function LoginPage({ app }) {
       // You can access the user information from the result
       console.log(result);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message); 
     }
   };
 
