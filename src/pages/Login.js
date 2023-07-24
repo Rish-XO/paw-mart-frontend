@@ -86,7 +86,7 @@ export default function LoginPage({ app }) {
       // })
       // if(check.data === true){}
 
-      dispatch(loginHandler({ token, role, id }));
+      dispatch(loginHandler({ token, role, id })); 
       const { from } = location.state || { from: "posts" };
       console.log(from);
       navigate(from);
