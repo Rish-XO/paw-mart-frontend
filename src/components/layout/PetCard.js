@@ -13,7 +13,7 @@ function PetCard({ pets }) {
     <Grid container spacing={2} justifyContent="center">
       {pets.map((pet) => (
         <Grid item xs={12} sm={6} md={4} key={pet.post_id}>
-          <Link to={`${pet.post_id}`}>
+          <Link to={`/posts/${pet.post_id}`}>
             <Card
               className="card-item"
               sx={{ maxWidth: 345 }}
@@ -42,7 +42,7 @@ function PetCard({ pets }) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Link to={`${pet.post_id}`}>
+              <Link to={`/posts/${pet.post_id}`}>
                   <div className="card-button">
                     <Button variant="contained" size="small">
                       View
