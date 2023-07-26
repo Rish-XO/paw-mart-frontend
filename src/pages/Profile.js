@@ -10,7 +10,7 @@ function Profile() {
   const { userID } = useParams();
   const yourPost = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/posts/${userID}`);
+      const response = await axios.get(`http://localhost:5000/profile/${userID}`);
       setPets(response.data);
     } catch (error) {
       console.log(error.message);
