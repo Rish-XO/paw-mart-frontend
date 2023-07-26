@@ -18,6 +18,7 @@ import Chat from "./pages/Chat";
 import CustomizedSnackbars from "./components/snackbar/Snackbar";
 import { initializeApp } from "firebase/app";
 import "firebase/auth";
+import Profile from "./pages/Profile";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnBZ3Q0nERoATGyl9VAJForKc_6wQW6pk",
