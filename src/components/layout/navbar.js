@@ -12,6 +12,8 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
+  const currentUser = useSelector(state => state.authHandler.use)
+
 
   console.log("loggedIN:", isLoggedIn);
 
