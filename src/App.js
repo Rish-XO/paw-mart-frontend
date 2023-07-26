@@ -83,7 +83,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile/:userID",
-        element:cc
+        element: <Profile
       },
       {
         path: "chat",
