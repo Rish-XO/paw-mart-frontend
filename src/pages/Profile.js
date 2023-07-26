@@ -10,6 +10,7 @@ function Profile() {
   const yourPost = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/posts/${userID}`);
+      const pets = response.data
     } catch (error) {
       console.log(error.message);
     }
@@ -22,7 +23,7 @@ function Profile() {
         <Typography sx={{ marginTop: "40px" }} variant="h1">
           your posts
         </Typography>
-        {/* <PetCard /> */}
+        <PetCard pets={pets}/>
       </Container>
     </>
   );
