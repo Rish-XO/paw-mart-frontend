@@ -16,7 +16,7 @@ import { Carousel } from "react-responsive-carousel";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 
 const FlexibleComponent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -116,20 +116,24 @@ const FlexibleComponent = () => {
                 })}
               </Carousel>
             )}
-            <Container sx={{marginTop: "20px"}}>
-            <Divider/>
-              <Typography variant="h5" fontWeight="bold">Breed</Typography>
-              <Typography variant='h6' gutterBottom>
-                {postData.breed}    {postData.category} 
+            <Container sx={{ marginTop: "20px" }}>
+              <Divider />
+              <Typography variant="h5" fontWeight="bold">
+                Breed
               </Typography>
-              <Typography variant="h5" fontWeight="bold">Description</Typography>
+              <Typography variant="h6" gutterBottom>
+                {postData.breed} {postData.category}
+              </Typography>
+              <Typography variant="h5" fontWeight="bold">
+                Description
+              </Typography>
               <Typography variant="body2" sx={{ marginBottom: "30px" }}>
                 {postData.description}
               </Typography>
               {showEdit && (
                 <Link to="edit">
                   <Button
-                    sx={{ position: "absolute", bottom: "8px", right: "8px"}}
+                    sx={{ position: "absolute", bottom: "8px", right: "8px" }}
                     variant="contained"
                   >
                     Edit
@@ -149,32 +153,33 @@ const FlexibleComponent = () => {
               <Typography variant="h3">₹ {postData.price}</Typography>
             </CardContent>
           </Card>
-          {!showEdit && 
-          <Card sx={{ marginTop: "30px" }}>
-            {/* Second Right Card */}
-            <CardContent>
-              <Grid container alignItems="center" spacing={2}>
-                <Grid item>
-                  <AccountBoxIcon fontSize="large" />
+          {!showEdit && (
+            <Card sx={{ marginTop: "30px" }}>
+              {/* Second Right Card */}
+              <CardContent>
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item>
+                    <AccountBoxIcon fontSize="large" />
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h6" fontWeight="bold">
+                      {owner}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      endIcon={<QuestionAnswerIcon />}
+                      onClick={chatHandler}
+                    >
+                      Chat with seller
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="h6" fontWeight="bold">{owner}</Typography>
-                </Grid>
-                <Grid item xs={12}>
-                 
-                  <Button
-                  variant="contained"
-                  fullWidth
-                  endIcon={<QuestionAnswerIcon />}
-                  onClick={chatHandler}
-                  > 
-                    Chat with seller
-                  </Button>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-                }
+              </CardContent>
+            </Card>
+          )}
         </Grid>
       </Grid>
     </Container>

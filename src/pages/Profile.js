@@ -1,15 +1,16 @@
-import React from 'react'
-import { useParams } from 'react-router'
+import React from "react";
+import { useParams } from "react-router";
 
 function Profile() {
-    const user_id = useParams()
+  const { userID } = useParams();
   return (
     <div>
-      <h1>helloo 
-        {user_id}
+      <h1>
+        helloo
+        {userID}
       </h1>
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

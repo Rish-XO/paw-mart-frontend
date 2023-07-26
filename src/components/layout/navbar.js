@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ChatIcon from '@mui/icons-material/Chat';
+import ChatIcon from "@mui/icons-material/Chat";
 import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../../utils/store/authSlice";
@@ -12,10 +12,9 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
-  const currentUser = useSelector(state => state.authHandler.use)
+  const currentUser = useSelector((state) => state.authHandler.user_id);
 
-
-  console.log("loggedIN:", isLoggedIn);
+  console.log("loggedIN:", isLoggedIn, currentUser);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,7 +26,12 @@ function Navbar() {
 
   const logoutSubmit = () => {
     dispatch(logoutHandler());
-    dispatch(snackBarDetailsAdder({severity: "info", message: "You have been logged out successfully."}))
+    dispatch(
+      snackBarDetailsAdder({
+        severity: "info",
+        message: "You have been logged out successfully.",
+      })
+    );
     closeMenu();
   };
   return (
@@ -73,25 +77,23 @@ function Navbar() {
             <div className="navbar-item">
               <div className="buttons">
                 {isLoggedIn && (
-                  <Box sx={{marginRight: "8px"}}>
+                  <Box sx={{ marginRight: "8px" }}>
+                    <NavLink
+                      className="button is-primary"
+                      to="/chat"
+                      onClick={closeMenu}
+                    >
+                      <ChatIcon />
+                    </NavLink>
 
-                  <NavLink
-                    className="button is-primary"
-                    to="/chat"
-                    onClick={closeMenu}
+                    <NavLink
+                      className="button is-primary"
+                      to={`/profile/${currentUser}`}
+                      onClick={closeMenu}
                     >
-                    <ChatIcon />
-                  </NavLink>
-            
-                  <NavLink
-                    className="button is-primary"
-                    to="#"
-                    onClick={closeMenu}
-                    >
-                    <AccountCircleIcon/>
-                  </NavLink>
-                    </Box>
-          
+                      <AccountCircleIcon />
+                    </NavLink>
+                  </Box>
                 )}
                 {!isLoggedIn && (
                   <>
