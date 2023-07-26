@@ -88,7 +88,7 @@ export default function LoginPage({ app }) {
 
       dispatch(loginHandler({ token, role, id })); 
       const { from } = location.state || { from: "posts" };
-      console.log(from);
+      console.log(from); 
       navigate(from);
       dispatch(
         snackBarDetailsAdder({
