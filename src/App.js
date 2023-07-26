@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         element: <LoginPage app={app} />,
       },
       {
-
+           path:
       },
       {
         path: "chat",
