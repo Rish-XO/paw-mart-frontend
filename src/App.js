@@ -82,6 +82,9 @@ const router = createBrowserRouter([
         element: <LoginPage app={app} />,
       },
       {
+
+      },
+      {
         path: "chat",
         children: [
           {
