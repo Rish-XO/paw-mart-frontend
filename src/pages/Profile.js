@@ -10,28 +10,33 @@ function Profile() {
   const { userID } = useParams();
   const yourPost = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/profile/${userID}`);
+      const response = await axios.get(
+        `http://localhost:5000/profile/${userID}`
+      );
       setPets(response.data);
     } catch (error) {
       console.log(error.message);
     }
   };
-  
+
   useEffect(() => {
     yourPost();
-  }, [userID]); 
+  }, [userID]);
 
-  return (  
-    <>  
+  return (
+    <>
       <Navbar />
-      <Container> 
-        <Typography sx={{ marginTop: "40px" , marginBottom: '20px'}} variant="h1">
-          your posts  
-        </Typography> 
-        <PetCard pets={pets} /> 
+      <Container>
+        <Typography
+          sx={{ marginTop: "40px", marginBottom: "20px" }}
+          variant="h1"
+        >
+          your posts
+        </Typography>
+        <PetCard pets={pets} />
       </Container>
     </>
-  ); 
-} 
- 
+  );
+}
+
 export default Profile;
