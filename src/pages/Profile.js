@@ -29,7 +29,7 @@ function Profile() {
         <PetCard pets={pets} />
       </Container>
     </>
-  );
+  ); 
 } 
 
 export default Profile;
