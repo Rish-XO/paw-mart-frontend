@@ -16,10 +16,11 @@ function Profile() {
       console.log(error.message);
     }
   };
+  
   useEffect(() => {
     yourPost();
   }, [userID]); 
-  
+
   return (  
     <>  
       <Navbar />
