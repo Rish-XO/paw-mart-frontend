@@ -26,7 +26,7 @@ function Profile() {
         <Typography sx={{ marginTop: "40px" , marginBottom: '20px'}} variant="h1">
           your posts  
         </Typography> 
-        <PetCard pets={pets} />
+        <PetCard pets={pets} /> 
       </Container>
     </>
   ); 
