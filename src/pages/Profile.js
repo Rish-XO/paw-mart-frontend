@@ -20,7 +20,7 @@ function Profile() {
     yourPost();
   }, [userID]);
   return (
-    <>
+    <> 
       <Navbar />
       <Container>
         <Typography sx={{ marginTop: "40px" , marginBottom: '20px'}} variant="h1">
