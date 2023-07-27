@@ -18,7 +18,7 @@ function Profile() {
   };
   useEffect(() => {
     yourPost();
-  }, [userID]);
+  }, [userID]); 
   return ( 
     <>  
       <Navbar />
