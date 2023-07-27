@@ -24,7 +24,7 @@ function Profile() {
       <Navbar />
       <Container> 
         <Typography sx={{ marginTop: "40px" , marginBottom: '20px'}} variant="h1">
-          your posts 
+          your posts  
         </Typography> 
         <PetCard pets={pets} />
       </Container>
