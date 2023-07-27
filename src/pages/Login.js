@@ -50,7 +50,7 @@ export default function LoginPage({ app }) {
   const auth = getAuth(app);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
   const isLoggedIn = useSelector((state) => state.authHandler.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
@@ -61,7 +61,7 @@ export default function LoginPage({ app }) {
       // You can access the user information from the result
       console.log(result);
     } catch (error) {
-      console.log(error.message); 
+      console.log(error.message);
     }
   };
 
@@ -86,9 +86,9 @@ export default function LoginPage({ app }) {
       // })
       // if(check.data === true){}
 
-      dispatch(loginHandler({ token, role, id })); 
+      dispatch(loginHandler({ token, role, id }));
       const { from } = location.state || { from: "posts" };
-      console.log(from); 
+      console.log(from);
       navigate(from);
       dispatch(
         snackBarDetailsAdder({
@@ -98,7 +98,12 @@ export default function LoginPage({ app }) {
       );
     } catch (error) {
       // console.log(error.response.data);
-      dispatch(snackBarDetailsAdder({severity: 'error', message: error.response.data}))
+      dispatch(
+        snackBarDetailsAdder({
+          severity: "error",
+          message: error.response.data,
+        })
+      );
       console.log(error.message);
     }
   };

@@ -42,7 +42,7 @@ function PetCard({ pets }) {
                 </Typography>
               </CardContent>
               <CardActions>
-              <Link to={`/posts/${pet.post_id}`}>
+                <Link to={`/posts/${pet.post_id}`}>
                   <div className="card-button">
                     <Button variant="contained" size="small">
                       View
